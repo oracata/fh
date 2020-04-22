@@ -6,13 +6,13 @@ import com.fh.util.Tools;
 
 public class Page {
 	
-	private int showCount; //æ¯é¡µæ˜¾ç¤ºè®°å½•æ•°
-	private int totalPage;		//æ€»é¡µæ•°
-	private int totalResult;	//æ€»è®°å½•æ•°
-	private int currentPage;	//å½“å‰é¡µ
-	private int currentResult;	//å½“å‰è®°å½•èµ·å§‹ç´¢å¼•
-	private boolean entityOrField;	//true:éœ€è¦åˆ†é¡µçš„åœ°æ–¹ï¼Œä¼ å…¥çš„å‚æ•°å°±æ˜¯Pageå®ä½“ï¼›false:éœ€è¦åˆ†é¡µçš„åœ°æ–¹ï¼Œä¼ å…¥çš„å‚æ•°æ‰€ä»£è¡¨çš„å®ä½“æ‹¥æœ‰Pageå±æ€§
-	private String pageStr;		//æœ€ç»ˆé¡µé¢æ˜¾ç¤ºçš„åº•éƒ¨ç¿»é¡µå¯¼èˆªï¼Œè¯¦ç»†è§ï¼šgetPageStr();
+	private int showCount; //Ã¿Ò³ÏÔÊ¾¼ÇÂ¼Êı
+	private int totalPage;		//×ÜÒ³Êı
+	private int totalResult;	//×Ü¼ÇÂ¼Êı
+	private int currentPage;	//µ±Ç°Ò³
+	private int currentResult;	//µ±Ç°¼ÇÂ¼ÆğÊ¼Ë÷Òı
+	private boolean entityOrField;	//true:ĞèÒª·ÖÒ³µÄµØ·½£¬´«ÈëµÄ²ÎÊı¾ÍÊÇPageÊµÌå£»false:ĞèÒª·ÖÒ³µÄµØ·½£¬´«ÈëµÄ²ÎÊıËù´ú±íµÄÊµÌåÓµÓĞPageÊôĞÔ
+	private String pageStr;		//×îÖÕÒ³ÃæÏÔÊ¾µÄµ×²¿·­Ò³µ¼º½£¬ÏêÏ¸¼û£ºgetPageStr();
 	private PageData pd = new PageData();
 	
 
@@ -62,19 +62,19 @@ public class Page {
 		if(totalResult>0){
 			sb.append("	<ul>\n");
 			if(currentPage==1){
-				sb.append("	<li><a>å…±<font color=red>"+totalResult+"</font>æ¡</a></li>\n");
-				sb.append("	<li><input type=\"number\" value=\"\" id=\"toGoPage\" style=\"width:50px;text-align:center;float:left\" placeholder=\"é¡µç \"/></li>\n");
-				sb.append("	<li style=\"cursor:pointer;\"><a onclick=\"toTZ();\"  class=\"btn btn-mini btn-success\">è·³è½¬</a></li>\n");
-				sb.append("	<li><a>é¦–é¡µ</a></li>\n");
-				sb.append("	<li><a>ä¸Šé¡µ</a></li>\n");
+				sb.append("	<li><a>¹²<font color=red>"+totalResult+"</font>Ìõ</a></li>\n");
+				sb.append("	<li><input type=\"number\" value=\"\" id=\"toGoPage\" style=\"width:50px;text-align:center;float:left\" placeholder=\"Ò³Âë\"/></li>\n");
+				sb.append("	<li style=\"cursor:pointer;\"><a onclick=\"toTZ();\"  class=\"btn btn-mini btn-success\">Ìø×ª</a></li>\n");
+				sb.append("	<li><a>Ê×Ò³</a></li>\n");
+				sb.append("	<li><a>ÉÏÒ³</a></li>\n");
 			}else{
-				sb.append("	<li><a>å…±<font color=red>"+totalResult+"</font>æ¡</a></li>\n");
-				sb.append("	<li><input type=\"number\" value=\"\" id=\"toGoPage\" style=\"width:50px;text-align:center;float:left\" placeholder=\"é¡µç \"/></li>\n");
-				sb.append("	<li style=\"cursor:pointer;\"><a onclick=\"toTZ();\"  class=\"btn btn-mini btn-success\">è·³è½¬</a></li>\n");
-				sb.append("	<li style=\"cursor:pointer;\"><a onclick=\"nextPage(1)\">é¦–é¡µ</a></li>\n");
-				sb.append("	<li style=\"cursor:pointer;\"><a onclick=\"nextPage("+(currentPage-1)+")\">ä¸Šé¡µ</a></li>\n");
+				sb.append("	<li><a>¹²<font color=red>"+totalResult+"</font>Ìõ</a></li>\n");
+				sb.append("	<li><input type=\"number\" value=\"\" id=\"toGoPage\" style=\"width:50px;text-align:center;float:left\" placeholder=\"Ò³Âë\"/></li>\n");
+				sb.append("	<li style=\"cursor:pointer;\"><a onclick=\"toTZ();\"  class=\"btn btn-mini btn-success\">Ìø×ª</a></li>\n");
+				sb.append("	<li style=\"cursor:pointer;\"><a onclick=\"nextPage(1)\">Ê×Ò³</a></li>\n");
+				sb.append("	<li style=\"cursor:pointer;\"><a onclick=\"nextPage("+(currentPage-1)+")\">ÉÏÒ³</a></li>\n");
 			}
-			int showTag = 5;//åˆ†é¡µæ ‡ç­¾æ˜¾ç¤ºæ•°é‡
+			int showTag = 5;//·ÖÒ³±êÇ©ÏÔÊ¾ÊıÁ¿
 			int startTag = 1;
 			if(currentPage>showTag){
 				startTag = currentPage-1;
@@ -87,17 +87,17 @@ public class Page {
 					sb.append("	<li style=\"cursor:pointer;\"><a onclick=\"nextPage("+i+")\">"+i+"</a></li>\n");
 			}
 			if(currentPage==totalPage){
-				sb.append("	<li><a>ä¸‹é¡µ</a></li>\n");
-				sb.append("	<li><a>å°¾é¡µ</a></li>\n");
+				sb.append("	<li><a>ÏÂÒ³</a></li>\n");
+				sb.append("	<li><a>Î²Ò³</a></li>\n");
 			}else{
-				sb.append("	<li style=\"cursor:pointer;\"><a onclick=\"nextPage("+(currentPage+1)+")\">ä¸‹é¡µ</a></li>\n");
-				sb.append("	<li style=\"cursor:pointer;\"><a onclick=\"nextPage("+totalPage+")\">å°¾é¡µ</a></li>\n");
+				sb.append("	<li style=\"cursor:pointer;\"><a onclick=\"nextPage("+(currentPage+1)+")\">ÏÂÒ³</a></li>\n");
+				sb.append("	<li style=\"cursor:pointer;\"><a onclick=\"nextPage("+totalPage+")\">Î²Ò³</a></li>\n");
 			}
-			sb.append("	<li><a>ç¬¬"+currentPage+"é¡µ</a></li>\n");
-			sb.append("	<li><a>å…±"+totalPage+"é¡µ</a></li>\n");
+			sb.append("	<li><a>µÚ"+currentPage+"Ò³</a></li>\n");
+			sb.append("	<li><a>¹²"+totalPage+"Ò³</a></li>\n");
 			
 			
-			sb.append("	<li><select title='æ˜¾ç¤ºæ¡æ•°' style=\"width:55px;float:left;\" onchange=\"changeCount(this.value)\">\n");
+			sb.append("	<li><select title='ÏÔÊ¾ÌõÊı' style=\"width:55px;float:left;\" onchange=\"changeCount(this.value)\">\n");
 			sb.append("	<option value='"+showCount+"'>"+showCount+"</option>\n");
 			sb.append("	<option value='10'>10</option>\n");
 			sb.append("	<option value='20'>20</option>\n");
@@ -117,7 +117,7 @@ public class Page {
 			sb.append("</ul>\n");
 			sb.append("<script type=\"text/javascript\">\n");
 			
-			//æ¢é¡µå‡½æ•°
+			//»»Ò³º¯Êı
 			sb.append("function nextPage(page){");
 			sb.append(" top.jzts();");
 			sb.append("	if(true && document.forms[0]){\n");
@@ -142,7 +142,7 @@ public class Page {
 			sb.append("	}\n");
 			sb.append("}\n");
 			
-			//è°ƒæ•´æ¯é¡µæ˜¾ç¤ºæ¡æ•°
+			//µ÷ÕûÃ¿Ò³ÏÔÊ¾ÌõÊı
 			sb.append("function changeCount(value){");
 			sb.append(" top.jzts();");
 			sb.append("	if(true && document.forms[0]){\n");
@@ -167,7 +167,7 @@ public class Page {
 			sb.append("	}\n");
 			sb.append("}\n");
 			
-			//è·³è½¬å‡½æ•° 
+			//Ìø×ªº¯Êı 
 			sb.append("function toTZ(){");
 			sb.append("var toPaggeVlue = document.getElementById(\"toGoPage\").value;");
 			sb.append("if(toPaggeVlue == ''){document.getElementById(\"toGoPage\").value=1;return;}");

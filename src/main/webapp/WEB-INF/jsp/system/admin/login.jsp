@@ -60,7 +60,7 @@
 					</div>
 				</div>
 				<div class="form-actions">
-					<div style="width:86%;padding-left:8%;">
+					<div style="width:86%;padding-left:10%;">
 
 						<div style="float: left;">
 							<i><img src="static/login/yan.png" /></i>
@@ -74,7 +74,7 @@
 								title="点击更换" src="" /></i>
 						</div>
 
-						<span class="pull-right" style="padding-right:3%;"><a
+						<span class="pull-right" style="padding-right:0%;"><a
 							href="javascript:quxiao();" class="btn btn-success">取消</a></span> <span
 							class="pull-right"><a onclick="severCheck();"
 							class="flip-link btn btn-info" id="to-recover">登录</a></span>
@@ -87,8 +87,8 @@
 
 			<div class="controls">
 				<div class="main_input_box">
-					<font color="white"><span id="nameerr">Copyright © FH
-							2100</span></font>
+					<font color="white"><span id="nameerr">Copyright © gaozhi
+							2020</span></font>
 				</div>
 			</div>
 		</div>
