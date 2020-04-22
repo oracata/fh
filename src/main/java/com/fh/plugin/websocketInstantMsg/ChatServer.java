@@ -15,7 +15,7 @@ import org.java_websocket.server.WebSocketServer;
 
 
 /**
- * å³æ—¶é€šè®¯
+ * ¼´Ê±Í¨Ñ¶
  * @author FH
  * QQ 313596790
  * 2015-5-16
@@ -31,7 +31,7 @@ public class ChatServer extends WebSocketServer{
 	}
 
 	/**
-	 * è§¦å‘è¿æ¥äº‹ä»¶
+	 * ´¥·¢Á¬½ÓÊÂ¼ş
 	 */
 	@Override
 	public void onOpen( WebSocket conn, ClientHandshake handshake ) {
@@ -40,7 +40,7 @@ public class ChatServer extends WebSocketServer{
 	}
 
 	/**
-	 * è§¦å‘å…³é—­äº‹ä»¶
+	 * ´¥·¢¹Ø±ÕÊÂ¼ş
 	 */
 	@Override
 	public void onClose( WebSocket conn, int code, String reason, boolean remote ) {
@@ -48,7 +48,7 @@ public class ChatServer extends WebSocketServer{
 	}
 
 	/**
-	 * å®¢æˆ·ç«¯å‘é€æ¶ˆæ¯åˆ°æœåŠ¡å™¨æ—¶è§¦å‘äº‹ä»¶
+	 * ¿Í»§¶Ë·¢ËÍÏûÏ¢µ½·şÎñÆ÷Ê±´¥·¢ÊÂ¼ş
 	 */
 	@Override
 	public void onMessage(WebSocket conn, String message){
@@ -59,11 +59,11 @@ public class ChatServer extends WebSocketServer{
 			this.userLeave(conn);
 		}if(null != message && message.contains("fhadmin886")){
 			String toUser = message.substring(message.indexOf("fhadmin886")+10, message.indexOf("fhfhadmin888"));
-			message = message.substring(0, message.indexOf("fhadmin886")) +"[ç§ä¿¡]  "+ message.substring(message.indexOf("fhfhadmin888")+12, message.length());
-			ChatServerPool.sendMessageToUser(ChatServerPool.getWebSocketByUser(toUser),message);//å‘æ‰€æŸç”¨æˆ·å‘é€æ¶ˆæ¯
-			ChatServerPool.sendMessageToUser(conn, message);//åŒæ—¶å‘æœ¬äººå‘é€æ¶ˆæ¯
+			message = message.substring(0, message.indexOf("fhadmin886")) +"[Ë½ĞÅ]  "+ message.substring(message.indexOf("fhfhadmin888")+12, message.length());
+			ChatServerPool.sendMessageToUser(ChatServerPool.getWebSocketByUser(toUser),message);//ÏòËùÄ³ÓÃ»§·¢ËÍÏûÏ¢
+			ChatServerPool.sendMessageToUser(conn, message);//Í¬Ê±Ïò±¾ÈË·¢ËÍÏûÏ¢
 		}else{
-			ChatServerPool.sendMessage(message.toString());//å‘æ‰€æœ‰åœ¨çº¿ç”¨æˆ·å‘é€æ¶ˆæ¯
+			ChatServerPool.sendMessage(message.toString());//ÏòËùÓĞÔÚÏßÓÃ»§·¢ËÍÏûÏ¢
 		}
 	}
 
@@ -71,7 +71,7 @@ public class ChatServer extends WebSocketServer{
 	}
 
 	/**
-	 * è§¦å‘å¼‚å¸¸äº‹ä»¶
+	 * ´¥·¢Òì³£ÊÂ¼ş
 	 */
 	@Override
 	public void onError( WebSocket conn, Exception ex ) {
@@ -83,45 +83,45 @@ public class ChatServer extends WebSocketServer{
 
 	
 	/**
-	 * ç”¨æˆ·åŠ å…¥å¤„ç†
+	 * ÓÃ»§¼ÓÈë´¦Àí
 	 * @param user
 	 */
 	public void userjoin(String user, WebSocket conn){
 		JSONObject result = new JSONObject();
 		result.element("type", "user_join");
 		result.element("user", "<a onclick=\"toUserMsg('"+user+"');\">"+user+"</a>");
-		ChatServerPool.sendMessage(result.toString());				//æŠŠå½“å‰ç”¨æˆ·åŠ å…¥åˆ°æ‰€æœ‰åœ¨çº¿ç”¨æˆ·åˆ—è¡¨ä¸­
-		String joinMsg = "{\"from\":\"[ç³»ç»Ÿ]\",\"content\":\""+user+"ä¸Šçº¿äº†\",\"timestamp\":"+new Date().getTime()+",\"type\":\"message\"}";
-		ChatServerPool.sendMessage(joinMsg);						//å‘æ‰€æœ‰åœ¨çº¿ç”¨æˆ·æ¨é€å½“å‰ç”¨æˆ·ä¸Šçº¿çš„æ¶ˆæ¯
+		ChatServerPool.sendMessage(result.toString());				//°Ñµ±Ç°ÓÃ»§¼ÓÈëµ½ËùÓĞÔÚÏßÓÃ»§ÁĞ±íÖĞ
+		String joinMsg = "{\"from\":\"[ÏµÍ³]\",\"content\":\""+user+"ÉÏÏßÁË\",\"timestamp\":"+new Date().getTime()+",\"type\":\"message\"}";
+		ChatServerPool.sendMessage(joinMsg);						//ÏòËùÓĞÔÚÏßÓÃ»§ÍÆËÍµ±Ç°ÓÃ»§ÉÏÏßµÄÏûÏ¢
 		result = new JSONObject();
 		result.element("type", "get_online_user");
-		ChatServerPool.addUser(user,conn);							//å‘è¿æ¥æ± æ·»åŠ å½“å‰çš„è¿æ¥å¯¹è±¡
+		ChatServerPool.addUser(user,conn);							//ÏòÁ¬½Ó³ØÌí¼Óµ±Ç°µÄÁ¬½Ó¶ÔÏó
 		result.element("list", ChatServerPool.getOnlineUser());
-		ChatServerPool.sendMessageToUser(conn, result.toString());	//å‘å½“å‰è¿æ¥å‘é€å½“å‰åœ¨çº¿ç”¨æˆ·çš„åˆ—è¡¨
+		ChatServerPool.sendMessageToUser(conn, result.toString());	//Ïòµ±Ç°Á¬½Ó·¢ËÍµ±Ç°ÔÚÏßÓÃ»§µÄÁĞ±í
 	}
 	
 	/**
-	 * ç”¨æˆ·ä¸‹çº¿å¤„ç†
+	 * ÓÃ»§ÏÂÏß´¦Àí
 	 * @param user
 	 */
 	public void userLeave(WebSocket conn){
 		String user = ChatServerPool.getUserByKey(conn);
-		boolean b = ChatServerPool.removeUser(conn);				//åœ¨è¿æ¥æ± ä¸­ç§»é™¤è¿æ¥
+		boolean b = ChatServerPool.removeUser(conn);				//ÔÚÁ¬½Ó³ØÖĞÒÆ³ıÁ¬½Ó
 		if(b){
 			JSONObject result = new JSONObject();
 			result.element("type", "user_leave");
 			result.element("user", "<a onclick=\"toUserMsg('"+user+"');\">"+user+"</a>");
-			ChatServerPool.sendMessage(result.toString());			//æŠŠå½“å‰ç”¨æˆ·ä»æ‰€æœ‰åœ¨çº¿ç”¨æˆ·åˆ—è¡¨ä¸­åˆ é™¤
-			String joinMsg = "{\"from\":\"[ç³»ç»Ÿ]\",\"content\":\""+user+"ä¸‹çº¿äº†\",\"timestamp\":"+new Date().getTime()+",\"type\":\"message\"}";
-			ChatServerPool.sendMessage(joinMsg);					//å‘åœ¨çº¿ç”¨æˆ·å‘é€å½“å‰ç”¨æˆ·é€€å‡ºçš„æ¶ˆæ¯
+			ChatServerPool.sendMessage(result.toString());			//°Ñµ±Ç°ÓÃ»§´ÓËùÓĞÔÚÏßÓÃ»§ÁĞ±íÖĞÉ¾³ı
+			String joinMsg = "{\"from\":\"[ÏµÍ³]\",\"content\":\""+user+"ÏÂÏßÁË\",\"timestamp\":"+new Date().getTime()+",\"type\":\"message\"}";
+			ChatServerPool.sendMessage(joinMsg);					//ÏòÔÚÏßÓÃ»§·¢ËÍµ±Ç°ÓÃ»§ÍË³öµÄÏûÏ¢
 		}
 	}
 	public static void main( String[] args ) throws InterruptedException , IOException {
 		WebSocketImpl.DEBUG = false;
-		int port = 8887; //ç«¯å£
+		int port = 8887; //¶Ë¿Ú
 		ChatServer s = new ChatServer(port);
 		s.start();
-		//System.out.println( "æœåŠ¡å™¨çš„ç«¯å£" + s.getPort() );
+		//System.out.println( "·şÎñÆ÷µÄ¶Ë¿Ú" + s.getPort() );
 	}
 
 }

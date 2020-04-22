@@ -1,4 +1,4 @@
-ï»¿package com.fh.util;
+package com.fh.util;
 import net.sourceforge.pinyin4j.PinyinHelper;
 import net.sourceforge.pinyin4j.format.HanyuPinyinCaseType;
 import net.sourceforge.pinyin4j.format.HanyuPinyinOutputFormat;
@@ -16,7 +16,7 @@ import net.sourceforge.pinyin4j.format.exception.BadHanyuPinyinOutputFormatCombi
 public class GetPinyin {
 
 	/**
-	 * å¾—åˆ° å…¨æ‹¼
+	 * µÃµ½ È«Æ´
 	 * 
 	 * @param src
 	 * @return
@@ -33,7 +33,7 @@ public class GetPinyin {
 		int t0 = t1.length;
 		try {
 			for (int i = 0; i < t0; i++) {
-				// åˆ¤æ–­æ˜¯å¦ä¸ºæ±‰å­—å­—ç¬¦
+				// ÅÐ¶ÏÊÇ·ñÎªºº×Ö×Ö·û
 				if (java.lang.Character.toString(t1[i]).matches(
 						"[\\u4E00-\\u9FA5]+")) {
 					t2 = PinyinHelper.toHanyuPinyinStringArray(t1[i], t3);
@@ -50,7 +50,7 @@ public class GetPinyin {
 	}
 
 	/**
-	 * å¾—åˆ°ä¸­æ–‡é¦–å­—æ¯
+	 * µÃµ½ÖÐÎÄÊ××ÖÄ¸
 	 * 
 	 * @param str
 	 * @return
@@ -71,7 +71,7 @@ public class GetPinyin {
 	}
 
 	/**
-	 * å°†å­—ç¬¦ä¸²è½¬ç§»ä¸ºASCIIç 
+	 * ½«×Ö·û´®×ªÒÆÎªASCIIÂë
 	 * 
 	 * @param cnStr
 	 * @return
@@ -88,7 +88,7 @@ public class GetPinyin {
 
 	public static void main(String[] args) {
 
-		String cnStr = "ä¸­å›½";
+		String cnStr = "ÖÐ¹ú";
 		System.out.println(getPingYin(cnStr));
 		System.out.println(getPinYinHeadChar(cnStr));
 	}
