@@ -35,15 +35,15 @@ import com.fh.service.weixin.imgmsg.ImgmsgService;
 import com.fh.service.weixin.textmsg.TextmsgService;
 
 /** 
- * ç±»åç§°ï¼šTextmsgController
- * åˆ›å»ºäººï¼šFH 
- * åˆ›å»ºæ—¶é—´ï¼š2015-05-05
+ * ÀàÃû³Æ£ºTextmsgController
+ * ´´½¨ÈË£ºFH 
+ * ´´½¨Ê±¼ä£º2015-05-05
  */
 @Controller
 @RequestMapping(value="/textmsg")
 public class TextmsgController extends BaseController {
 	
-	String menuUrl = "textmsg/list.do"; //èœå•åœ°å€(æƒé™ç”¨)
+	String menuUrl = "textmsg/list.do"; //²Ëµ¥µØÖ·(È¨ÏŞÓÃ)
 	@Resource(name="textmsgService")
 	private TextmsgService textmsgService;
 	@Resource(name="commandService")
@@ -52,17 +52,17 @@ public class TextmsgController extends BaseController {
 	private ImgmsgService imgmsgService;
 	
 	/**
-	 * æ–°å¢
+	 * ĞÂÔö
 	 */
 	@RequestMapping(value="/save")
 	public ModelAndView save() throws Exception{
-		logBefore(logger, "æ–°å¢Textmsg");
+		logBefore(logger, "ĞÂÔöTextmsg");
 		if(!Jurisdiction.buttonJurisdiction(menuUrl, "add")){return null;}
 		ModelAndView mv = this.getModelAndView();
 		PageData pd = new PageData();
 		pd = this.getPageData();
-		pd.put("TEXTMSG_ID", this.get32UUID());	//ä¸»é”®
-		pd.put("CREATETIME", Tools.date2Str(new Date())); //åˆ›å»ºæ—¶é—´
+		pd.put("TEXTMSG_ID", this.get32UUID());	//Ö÷¼ü
+		pd.put("CREATETIME", Tools.date2Str(new Date())); //´´½¨Ê±¼ä
 		textmsgService.save(pd);
 		mv.addObject("msg","success");
 		mv.setViewName("save_result");
@@ -70,11 +70,11 @@ public class TextmsgController extends BaseController {
 	}
 	
 	/**
-	 * åˆ é™¤
+	 * É¾³ı
 	 */
 	@RequestMapping(value="/delete")
 	public void delete(PrintWriter out){
-		logBefore(logger, "åˆ é™¤Textmsg");
+		logBefore(logger, "É¾³ıTextmsg");
 		if(!Jurisdiction.buttonJurisdiction(menuUrl, "del")){return;}
 		PageData pd = new PageData();
 		try{
@@ -89,11 +89,11 @@ public class TextmsgController extends BaseController {
 	}
 	
 	/**
-	 * ä¿®æ”¹
+	 * ĞŞ¸Ä
 	 */
 	@RequestMapping(value="/edit")
 	public ModelAndView edit() throws Exception{
-		logBefore(logger, "ä¿®æ”¹Textmsg");
+		logBefore(logger, "ĞŞ¸ÄTextmsg");
 		if(!Jurisdiction.buttonJurisdiction(menuUrl, "edit")){return null;}
 		ModelAndView mv = this.getModelAndView();
 		PageData pd = new PageData();
@@ -105,11 +105,11 @@ public class TextmsgController extends BaseController {
 	}
 	
 	/**
-	 * åˆ—è¡¨
+	 * ÁĞ±í
 	 */
 	@RequestMapping(value="/list")
 	public ModelAndView list(Page page){
-		logBefore(logger, "åˆ—è¡¨Textmsg");
+		logBefore(logger, "ÁĞ±íTextmsg");
 		//if(!Jurisdiction.buttonJurisdiction(menuUrl, "cha")){return null;}
 		ModelAndView mv = this.getModelAndView();
 		PageData pd = new PageData();
@@ -120,11 +120,11 @@ public class TextmsgController extends BaseController {
 				pd.put("KEYWORD", KEYWORD.trim());
 			}
 			page.setPd(pd);
-			List<PageData>	varList = textmsgService.list(page);	//åˆ—å‡ºTextmsgåˆ—è¡¨
+			List<PageData>	varList = textmsgService.list(page);	//ÁĞ³öTextmsgÁĞ±í
 			mv.setViewName("weixin/textmsg/textmsg_list");
 			mv.addObject("varList", varList);
 			mv.addObject("pd", pd);
-			mv.addObject(Const.SESSION_QX,this.getHC());	//æŒ‰é’®æƒé™
+			mv.addObject(Const.SESSION_QX,this.getHC());	//°´Å¥È¨ÏŞ
 		} catch(Exception e){
 			logger.error(e.toString(), e);
 		}
@@ -132,11 +132,11 @@ public class TextmsgController extends BaseController {
 	}
 	
 	/**
-	 * å»æ–°å¢é¡µé¢
+	 * È¥ĞÂÔöÒ³Ãæ
 	 */
 	@RequestMapping(value="/goAdd")
 	public ModelAndView goAdd(){
-		logBefore(logger, "å»æ–°å¢Textmsgé¡µé¢");
+		logBefore(logger, "È¥ĞÂÔöTextmsgÒ³Ãæ");
 		ModelAndView mv = this.getModelAndView();
 		PageData pd = new PageData();
 		pd = this.getPageData();
@@ -151,32 +151,32 @@ public class TextmsgController extends BaseController {
 	}	
 	
 	/**
-	 * å»å…³æ³¨å›å¤é¡µé¢
+	 * È¥¹Ø×¢»Ø¸´Ò³Ãæ
 	 */
 	@RequestMapping(value="/goSubscribe")
 	public ModelAndView goSubscribe(){
-		logBefore(logger, "å»å…³æ³¨å›å¤é¡µé¢");
+		logBefore(logger, "È¥¹Ø×¢»Ø¸´Ò³Ãæ");
 		ModelAndView mv = this.getModelAndView();
 		PageData pd = new PageData();
 		pd = this.getPageData();
 		try {
-			pd.put("KEYWORD", "å…³æ³¨");
+			pd.put("KEYWORD", "¹Ø×¢");
 			PageData msgpd = textmsgService.findByKw(pd);
 			if(null != msgpd){
-				mv.addObject("msg", "æ–‡æœ¬æ¶ˆæ¯");
+				mv.addObject("msg", "ÎÄ±¾ÏûÏ¢");
 				mv.addObject("content", msgpd.getString("CONTENT"));
 			}else{
 				msgpd = imgmsgService.findByKw(pd);
 				if(null != msgpd){
-					mv.addObject("msg", "å›¾æ–‡æ¶ˆæ¯");
-					mv.addObject("content", "æ ‡é¢˜ï¼š"+msgpd.getString("TITLE1"));
+					mv.addObject("msg", "Í¼ÎÄÏûÏ¢");
+					mv.addObject("content", "±êÌâ£º"+msgpd.getString("TITLE1"));
 				}else{
 					msgpd = commandService.findByKw(pd);
 					if(null != msgpd){
-						mv.addObject("msg", "å‘½ä»¤");
-						mv.addObject("content", "æ‰§è¡Œå‘½ä»¤ï¼š"+msgpd.getString("COMMANDCODE"));
+						mv.addObject("msg", "ÃüÁî");
+						mv.addObject("content", "Ö´ĞĞÃüÁî£º"+msgpd.getString("COMMANDCODE"));
 					}else{
-						mv.addObject("msg", "æ— å›å¤");
+						mv.addObject("msg", "ÎŞ»Ø¸´");
 					}
 				}
 			}
@@ -189,16 +189,16 @@ public class TextmsgController extends BaseController {
 	}
 	
 	/**
-	 * å»ä¿®æ”¹é¡µé¢
+	 * È¥ĞŞ¸ÄÒ³Ãæ
 	 */
 	@RequestMapping(value="/goEdit")
 	public ModelAndView goEdit(){
-		logBefore(logger, "å»ä¿®æ”¹Textmsgé¡µé¢");
+		logBefore(logger, "È¥ĞŞ¸ÄTextmsgÒ³Ãæ");
 		ModelAndView mv = this.getModelAndView();
 		PageData pd = new PageData();
 		pd = this.getPageData();
 		try {
-			pd = textmsgService.findById(pd);	//æ ¹æ®IDè¯»å–
+			pd = textmsgService.findById(pd);	//¸ù¾İID¶ÁÈ¡
 			mv.setViewName("weixin/textmsg/textmsg_edit");
 			mv.addObject("msg", "edit");
 			mv.addObject("pd", pd);
@@ -209,12 +209,12 @@ public class TextmsgController extends BaseController {
 	}	
 	
 	/**
-	 * æ‰¹é‡åˆ é™¤
+	 * ÅúÁ¿É¾³ı
 	 */
 	@RequestMapping(value="/deleteAll")
 	@ResponseBody
 	public Object deleteAll() {
-		logBefore(logger, "æ‰¹é‡åˆ é™¤Textmsg");
+		logBefore(logger, "ÅúÁ¿É¾³ıTextmsg");
 		if(!Jurisdiction.buttonJurisdiction(menuUrl, "del")){return null;}
 		PageData pd = new PageData();		
 		Map<String,Object> map = new HashMap<String,Object>();
@@ -240,7 +240,7 @@ public class TextmsgController extends BaseController {
 	}
 	
 	/**
-	 * åˆ¤æ–­å…³é”®è¯æ˜¯å¦å­˜åœ¨
+	 * ÅĞ¶Ï¹Ø¼ü´ÊÊÇ·ñ´æÔÚ
 	 */
 	@RequestMapping(value="/hasK")
 	@ResponseBody
@@ -257,17 +257,17 @@ public class TextmsgController extends BaseController {
 		} catch(Exception e){
 			logger.error(e.toString(), e);
 		}
-		map.put("result", errInfo);				//è¿”å›ç»“æœ
+		map.put("result", errInfo);				//·µ»Ø½á¹û
 		return AppUtil.returnObject(new PageData(), map);
 	}
 	
 	/*
-	 * å¯¼å‡ºåˆ°excel
+	 * µ¼³öµ½excel
 	 * @return
 	 */
 	@RequestMapping(value="/excel")
 	public ModelAndView exportExcel(){
-		logBefore(logger, "å¯¼å‡ºTextmsgåˆ°excel");
+		logBefore(logger, "µ¼³öTextmsgµ½excel");
 		if(!Jurisdiction.buttonJurisdiction(menuUrl, "cha")){return null;}
 		ModelAndView mv = new ModelAndView();
 		PageData pd = new PageData();
@@ -275,11 +275,11 @@ public class TextmsgController extends BaseController {
 		try{
 			Map<String,Object> dataMap = new HashMap<String,Object>();
 			List<String> titles = new ArrayList<String>();
-			titles.add("å…³é”®è¯");	//1
-			titles.add("å†…å®¹");	//2
-			titles.add("åˆ›å»ºæ—¶é—´");	//3
-			titles.add("çŠ¶æ€");	//4
-			titles.add("å¤‡æ³¨");	//5
+			titles.add("¹Ø¼ü´Ê");	//1
+			titles.add("ÄÚÈİ");	//2
+			titles.add("´´½¨Ê±¼ä");	//3
+			titles.add("×´Ì¬");	//4
+			titles.add("±¸×¢");	//5
 			dataMap.put("titles", titles);
 			List<PageData> varOList = textmsgService.listAll(pd);
 			List<PageData> varList = new ArrayList<PageData>();
@@ -301,13 +301,13 @@ public class TextmsgController extends BaseController {
 		return mv;
 	}
 	
-	/* ===============================æƒé™================================== */
+	/* ===============================È¨ÏŞ================================== */
 	public Map<String, String> getHC(){
-		Subject currentUser = SecurityUtils.getSubject();  //shiroç®¡ç†çš„session
+		Subject currentUser = SecurityUtils.getSubject();  //shiro¹ÜÀíµÄsession
 		Session session = currentUser.getSession();
 		return (Map<String, String>)session.getAttribute(Const.SESSION_QX);
 	}
-	/* ===============================æƒé™================================== */
+	/* ===============================È¨ÏŞ================================== */
 	
 	@InitBinder
 	public void initBinder(WebDataBinder binder){

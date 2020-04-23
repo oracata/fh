@@ -7,11 +7,11 @@ import org.springframework.web.servlet.HandlerExceptionResolver;
 import org.springframework.web.servlet.ModelAndView;
 /**
  * 
-* ç±»åç§°ï¼šMyExceptionResolver.java
-* ç±»æè¿°ï¼š 
+* ÀàÃû³Æ£ºMyExceptionResolver.java
+* ÀàÃèÊö£º 
 * @author FH
-* ä½œè€…å•ä½ï¼š 
-* è”ç³»æ–¹å¼ï¼šQQ313596790
+* ×÷Õßµ¥Î»£º 
+* ÁªÏµ·½Ê½£ºQQ313596790
 * @version 1.0
  */
 public class MyExceptionResolver implements HandlerExceptionResolver{
@@ -19,9 +19,9 @@ public class MyExceptionResolver implements HandlerExceptionResolver{
 	public ModelAndView resolveException(HttpServletRequest request,
 			HttpServletResponse response, Object handler, Exception ex) {
 		// TODO Auto-generated method stub
-		System.out.println("==============å¼‚å¸¸å¼€å§‹=============");
+		System.out.println("==============Òì³£¿ªÊ¼=============");
 		ex.printStackTrace();
-		System.out.println("==============å¼‚å¸¸ç»“æŸ=============");
+		System.out.println("==============Òì³£½áÊø=============");
 		ModelAndView mv = new ModelAndView("error");
 		mv.addObject("exception", ex.toString().replaceAll("\n", "<br/>"));
 		return mv;

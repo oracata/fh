@@ -20,9 +20,9 @@ import com.fh.util.PageData;
 import com.fh.util.PathUtil;
 
 /** 
- * ç±»åç§°ï¼šFreemarkerController
- * åˆ›å»ºäººï¼šFH 
- * åˆ›å»ºæ—¶é—´ï¼š2015å¹´1æœˆ12æ—¥
+ * ÀàÃû³Æ£ºFreemarkerController
+ * ´´½¨ÈË£ºFH 
+ * ´´½¨Ê±¼ä£º2015Äê1ÔÂ12ÈÕ
  * @version
  */
 @Controller
@@ -30,7 +30,7 @@ import com.fh.util.PathUtil;
 public class CreateCodeController extends BaseController {
 	
 	/**
-	 * ç”Ÿæˆä»£ç 
+	 * Éú³É´úÂë
 	 */
 	@RequestMapping(value="/proCode")
 	public void proCode(HttpServletResponse response) throws Exception{
@@ -38,62 +38,62 @@ public class CreateCodeController extends BaseController {
 		pd = this.getPageData();
 		
 		/* ============================================================================================= */
-		String packageName = pd.getString("packageName");  			//åŒ…å				========1
-		String objectName = pd.getString("objectName");	   			//ç±»å				========2
-		String tabletop = pd.getString("tabletop");	   				//è¡¨å‰ç¼€				========3
-		tabletop = null == tabletop?"":tabletop.toUpperCase();		//è¡¨å‰ç¼€è½¬å¤§å†™
-		String zindext = pd.getString("zindex");	   	   			//å±æ€§æ€»æ•°
+		String packageName = pd.getString("packageName");  			//°üÃû				========1
+		String objectName = pd.getString("objectName");	   			//ÀàÃû				========2
+		String tabletop = pd.getString("tabletop");	   				//±íÇ°×º				========3
+		tabletop = null == tabletop?"":tabletop.toUpperCase();		//±íÇ°×º×ª´óĞ´
+		String zindext = pd.getString("zindex");	   	   			//ÊôĞÔ×ÜÊı
 		int zindex = 0;
 		if(null != zindext && !"".equals(zindext)){
 			zindex = Integer.parseInt(zindext);
 		}
-		List<String[]> fieldList = new ArrayList<String[]>();   	//å±æ€§é›†åˆ			========4
+		List<String[]> fieldList = new ArrayList<String[]>();   	//ÊôĞÔ¼¯ºÏ			========4
 		for(int i=0; i< zindex; i++){
-			fieldList.add(pd.getString("field"+i).split(",fh,"));	//å±æ€§æ”¾åˆ°é›†åˆé‡Œé¢
+			fieldList.add(pd.getString("field"+i).split(",fh,"));	//ÊôĞÔ·Åµ½¼¯ºÏÀïÃæ
 		}
 		
-		Map<String,Object> root = new HashMap<String,Object>();		//åˆ›å»ºæ•°æ®æ¨¡å‹
+		Map<String,Object> root = new HashMap<String,Object>();		//´´½¨Êı¾İÄ£ĞÍ
 		root.put("fieldList", fieldList);
-		root.put("packageName", packageName);						//åŒ…å
-		root.put("objectName", objectName);							//ç±»å
-		root.put("objectNameLower", objectName.toLowerCase());		//ç±»å(å…¨å°å†™)
-		root.put("objectNameUpper", objectName.toUpperCase());		//ç±»å(å…¨å¤§å†™)
-		root.put("tabletop", tabletop);								//è¡¨å‰ç¼€	
-		root.put("nowDate", new Date());							//å½“å‰æ—¥æœŸ
+		root.put("packageName", packageName);						//°üÃû
+		root.put("objectName", objectName);							//ÀàÃû
+		root.put("objectNameLower", objectName.toLowerCase());		//ÀàÃû(È«Ğ¡Ğ´)
+		root.put("objectNameUpper", objectName.toUpperCase());		//ÀàÃû(È«´óĞ´)
+		root.put("tabletop", tabletop);								//±íÇ°×º	
+		root.put("nowDate", new Date());							//µ±Ç°ÈÕÆÚ
 		
-		DelAllFile.delFolder(PathUtil.getClasspath()+"admin/ftl"); //ç”Ÿæˆä»£ç å‰,å…ˆæ¸…ç©ºä¹‹å‰ç”Ÿæˆçš„ä»£ç 
+		DelAllFile.delFolder(PathUtil.getClasspath()+"admin/ftl"); //Éú³É´úÂëÇ°,ÏÈÇå¿ÕÖ®Ç°Éú³ÉµÄ´úÂë
 		/* ============================================================================================= */
 		
-		String filePath = "admin/ftl/code/";						//å­˜æ”¾è·¯å¾„
-		String ftlPath = "createCode";								//ftlè·¯å¾„
+		String filePath = "admin/ftl/code/";						//´æ·ÅÂ·¾¶
+		String ftlPath = "createCode";								//ftlÂ·¾¶
 		
-		/*ç”Ÿæˆcontroller*/
+		/*Éú³Écontroller*/
 		Freemarker.printFile("controllerTemplate.ftl", root, "controller/"+packageName+"/"+objectName.toLowerCase()+"/"+objectName+"Controller.java", filePath, ftlPath);
 		
-		/*ç”Ÿæˆservice*/
+		/*Éú³Éservice*/
 		Freemarker.printFile("serviceTemplate.ftl", root, "service/"+packageName+"/"+objectName.toLowerCase()+"/"+objectName+"Service.java", filePath, ftlPath);
 
-		/*ç”Ÿæˆmybatis xml*/
+		/*Éú³Émybatis xml*/
 		Freemarker.printFile("mapperMysqlTemplate.ftl", root, "mybatis_mysql/"+packageName+"/"+objectName+"Mapper.xml", filePath, ftlPath);
 		Freemarker.printFile("mapperOracleTemplate.ftl", root, "mybatis_oracle/"+packageName+"/"+objectName+"Mapper.xml", filePath, ftlPath);
 		
-		/*ç”ŸæˆSQLè„šæœ¬*/
-		Freemarker.printFile("mysql_SQL_Template.ftl", root, "mysqlæ•°æ®åº“è„šæœ¬/"+tabletop+objectName.toUpperCase()+".sql", filePath, ftlPath);
-		Freemarker.printFile("oracle_SQL_Template.ftl", root, "oracleæ•°æ®åº“è„šæœ¬/"+tabletop+objectName.toUpperCase()+".sql", filePath, ftlPath);
+		/*Éú³ÉSQL½Å±¾*/
+		Freemarker.printFile("mysql_SQL_Template.ftl", root, "mysqlÊı¾İ¿â½Å±¾/"+tabletop+objectName.toUpperCase()+".sql", filePath, ftlPath);
+		Freemarker.printFile("oracle_SQL_Template.ftl", root, "oracleÊı¾İ¿â½Å±¾/"+tabletop+objectName.toUpperCase()+".sql", filePath, ftlPath);
 		
-		/*ç”Ÿæˆjspé¡µé¢*/
+		/*Éú³ÉjspÒ³Ãæ*/
 		Freemarker.printFile("jsp_list_Template.ftl", root, "jsp/"+packageName+"/"+objectName.toLowerCase()+"/"+objectName.toLowerCase()+"_list.jsp", filePath, ftlPath);
 		Freemarker.printFile("jsp_edit_Template.ftl", root, "jsp/"+packageName+"/"+objectName.toLowerCase()+"/"+objectName.toLowerCase()+"_edit.jsp", filePath, ftlPath);
 		
-		/*ç”Ÿæˆè¯´æ˜æ–‡æ¡£*/
-		Freemarker.printFile("docTemplate.ftl", root, "è¯´æ˜.doc", filePath, ftlPath);
+		/*Éú³ÉËµÃ÷ÎÄµµ*/
+		Freemarker.printFile("docTemplate.ftl", root, "ËµÃ÷.doc", filePath, ftlPath);
 		
-		//this.print("oracle_SQL_Template.ftl", root);  æ§åˆ¶å°æ‰“å°
+		//this.print("oracle_SQL_Template.ftl", root);  ¿ØÖÆÌ¨´òÓ¡
 		
-		/*ç”Ÿæˆçš„å…¨éƒ¨ä»£ç å‹ç¼©æˆzipæ–‡ä»¶*/
+		/*Éú³ÉµÄÈ«²¿´úÂëÑ¹Ëõ³ÉzipÎÄ¼ş*/
 		FileZip.zip(PathUtil.getClasspath()+"admin/ftl/code", PathUtil.getClasspath()+"admin/ftl/code.zip");
 		
-		/*ä¸‹è½½ä»£ç */
+		/*ÏÂÔØ´úÂë*/
 		FileDownload.fileDownload(response, PathUtil.getClasspath()+"admin/ftl/code.zip", "code.zip");
 		
 	}

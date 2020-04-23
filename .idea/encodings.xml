@@ -1,11 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="Encoding" defaultCharsetForPropertiesFiles="GBK">
-    <file url="file://$PROJECT_DIR$" charset="GBK" />
-    <file url="file://$PROJECT_DIR$/cy.sql" charset="GBK" />
-    <file url="file://$PROJECT_DIR$/src/main/java/com/fh/entity/Page.java" charset="GBK" />
-    <file url="file://$PROJECT_DIR$/src/main/java/com/fh/plugin/websocketInstantMsg/ChatServer.java" charset="GBK" />
-    <file url="file://$PROJECT_DIR$/src/main/java/com/fh/util/GetPinyin.java" charset="GBK" />
+  <component name="Encoding" native2AsciiForPropertiesFiles="true" defaultCharsetForPropertiesFiles="GBK">
     <file url="PROJECT" charset="GBK" />
   </component>
 </project>

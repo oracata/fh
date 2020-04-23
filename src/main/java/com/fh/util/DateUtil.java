@@ -19,7 +19,7 @@ public class DateUtil {
 			"yyyy-MM-dd HH:mm:ss");
 
 	/**
-	 * è·å–YYYYæ ¼å¼
+	 * »ñÈ¡YYYY¸ñÊ½
 	 * 
 	 * @return
 	 */
@@ -28,7 +28,7 @@ public class DateUtil {
 	}
 
 	/**
-	 * è·å–YYYY-MM-DDæ ¼å¼
+	 * »ñÈ¡YYYY-MM-DD¸ñÊ½
 	 * 
 	 * @return
 	 */
@@ -37,7 +37,7 @@ public class DateUtil {
 	}
 	
 	/**
-	 * è·å–YYYYMMDDæ ¼å¼
+	 * »ñÈ¡YYYYMMDD¸ñÊ½
 	 * 
 	 * @return
 	 */
@@ -46,7 +46,7 @@ public class DateUtil {
 	}
 
 	/**
-	 * è·å–YYYY-MM-DD HH:mm:ssæ ¼å¼
+	 * »ñÈ¡YYYY-MM-DD HH:mm:ss¸ñÊ½
 	 * 
 	 * @return
 	 */
@@ -56,7 +56,7 @@ public class DateUtil {
 
 	/**
 	* @Title: compareDate
-	* @Description: TODO(æ—¥æœŸæ¯”è¾ƒï¼Œå¦‚æœs>=e è¿”å›true å¦åˆ™è¿”å›false)
+	* @Description: TODO(ÈÕÆÚ±È½Ï£¬Èç¹ûs>=e ·µ»Øtrue ·ñÔò·µ»Øfalse)
 	* @param s
 	* @param e
 	* @return boolean  
@@ -71,7 +71,7 @@ public class DateUtil {
 	}
 
 	/**
-	 * æ ¼å¼åŒ–æ—¥æœŸ
+	 * ¸ñÊ½»¯ÈÕÆÚ
 	 * 
 	 * @return
 	 */
@@ -86,7 +86,7 @@ public class DateUtil {
 	}
 
 	/**
-	 * æ ¡éªŒæ—¥æœŸæ˜¯å¦åˆæ³•
+	 * Ğ£ÑéÈÕÆÚÊÇ·ñºÏ·¨
 	 * 
 	 * @return
 	 */
@@ -96,7 +96,7 @@ public class DateUtil {
 			fmt.parse(s);
 			return true;
 		} catch (Exception e) {
-			// å¦‚æœthrow java.text.ParseExceptionæˆ–è€…NullPointerExceptionï¼Œå°±è¯´æ˜æ ¼å¼ä¸å¯¹
+			// Èç¹ûthrow java.text.ParseException»òÕßNullPointerException£¬¾ÍËµÃ÷¸ñÊ½²»¶Ô
 			return false;
 		}
 	}
@@ -107,12 +107,12 @@ public class DateUtil {
 			int years=(int) (((fmt.parse(endTime).getTime()-fmt.parse(startTime).getTime())/ (1000 * 60 * 60 * 24))/365);
 			return years;
 		} catch (Exception e) {
-			// å¦‚æœthrow java.text.ParseExceptionæˆ–è€…NullPointerExceptionï¼Œå°±è¯´æ˜æ ¼å¼ä¸å¯¹
+			// Èç¹ûthrow java.text.ParseException»òÕßNullPointerException£¬¾ÍËµÃ÷¸ñÊ½²»¶Ô
 			return 0;
 		}
 	}
 	  /**
-     * <li>åŠŸèƒ½æè¿°ï¼šæ—¶é—´ç›¸å‡å¾—åˆ°å¤©æ•°
+     * <li>¹¦ÄÜÃèÊö£ºÊ±¼äÏà¼õµÃµ½ÌìÊı
      * @param beginDateStr
      * @param endDateStr
      * @return
@@ -132,21 +132,21 @@ public class DateUtil {
 				e.printStackTrace();
 			}
             day=(endDate.getTime()-beginDate.getTime())/(24*60*60*1000);
-            //System.out.println("ç›¸éš”çš„å¤©æ•°="+day);
+            //System.out.println("Ïà¸ôµÄÌìÊı="+day);
       
         return day;
     }
     
     /**
-     * å¾—åˆ°nå¤©ä¹‹åçš„æ—¥æœŸ
+     * µÃµ½nÌìÖ®ºóµÄÈÕÆÚ
      * @param days
      * @return
      */
     public static String getAfterDayDate(String days) {
     	int daysInt = Integer.parseInt(days);
     	
-        Calendar canlendar = Calendar.getInstance(); // java.utilåŒ…
-        canlendar.add(Calendar.DATE, daysInt); // æ—¥æœŸå‡ å¦‚æœä¸å¤Ÿå‡ä¼šå°†æœˆå˜åŠ¨
+        Calendar canlendar = Calendar.getInstance(); // java.util°ü
+        canlendar.add(Calendar.DATE, daysInt); // ÈÕÆÚ¼õ Èç¹û²»¹»¼õ»á½«ÔÂ±ä¶¯
         Date date = canlendar.getTime();
         
         SimpleDateFormat sdfd = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -156,15 +156,15 @@ public class DateUtil {
     }
     
     /**
-     * å¾—åˆ°nå¤©ä¹‹åæ˜¯å‘¨å‡ 
+     * µÃµ½nÌìÖ®ºóÊÇÖÜ¼¸
      * @param days
      * @return
      */
     public static String getAfterDayWeek(String days) {
     	int daysInt = Integer.parseInt(days);
     	
-        Calendar canlendar = Calendar.getInstance(); // java.utilåŒ…
-        canlendar.add(Calendar.DATE, daysInt); // æ—¥æœŸå‡ å¦‚æœä¸å¤Ÿå‡ä¼šå°†æœˆå˜åŠ¨
+        Calendar canlendar = Calendar.getInstance(); // java.util°ü
+        canlendar.add(Calendar.DATE, daysInt); // ÈÕÆÚ¼õ Èç¹û²»¹»¼õ»á½«ÔÂ±ä¶¯
         Date date = canlendar.getTime();
         
         SimpleDateFormat sdf = new SimpleDateFormat("E");

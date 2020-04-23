@@ -17,7 +17,7 @@ public class DaoSupport implements DAO {
 	private SqlSessionTemplate sqlSessionTemplate;
 	
 	/**
-	 * ä¿å­˜å¯¹è±¡
+	 * ±£´æ¶ÔÏó
 	 * @param str
 	 * @param obj
 	 * @return
@@ -28,7 +28,7 @@ public class DaoSupport implements DAO {
 	}
 	
 	/**
-	 * æ‰¹é‡æ›´æ–°
+	 * ÅúÁ¿¸üĞÂ
 	 * @param str
 	 * @param obj
 	 * @return
@@ -39,7 +39,7 @@ public class DaoSupport implements DAO {
 	}
 	
 	/**
-	 * ä¿®æ”¹å¯¹è±¡
+	 * ĞŞ¸Ä¶ÔÏó
 	 * @param str
 	 * @param obj
 	 * @return
@@ -50,7 +50,7 @@ public class DaoSupport implements DAO {
 	}
 
 	/**
-	 * æ‰¹é‡æ›´æ–°
+	 * ÅúÁ¿¸üĞÂ
 	 * @param str
 	 * @param obj
 	 * @return
@@ -58,7 +58,7 @@ public class DaoSupport implements DAO {
 	 */
 	public void batchUpdate(String str, List objs )throws Exception{
 		SqlSessionFactory sqlSessionFactory = sqlSessionTemplate.getSqlSessionFactory();
-		//æ‰¹é‡æ‰§è¡Œå™¨
+		//ÅúÁ¿Ö´ĞĞÆ÷
 		SqlSession sqlSession = sqlSessionFactory.openSession(ExecutorType.BATCH,false);
 		try{
 			if(objs!=null){
@@ -75,7 +75,7 @@ public class DaoSupport implements DAO {
 	}
 	
 	/**
-	 * æ‰¹é‡æ›´æ–°
+	 * ÅúÁ¿¸üĞÂ
 	 * @param str
 	 * @param obj
 	 * @return
@@ -86,7 +86,7 @@ public class DaoSupport implements DAO {
 	}
 	
 	/**
-	 * åˆ é™¤å¯¹è±¡ 
+	 * É¾³ı¶ÔÏó 
 	 * @param str
 	 * @param obj
 	 * @return
@@ -97,7 +97,7 @@ public class DaoSupport implements DAO {
 	}
 	 
 	/**
-	 * æŸ¥æ‰¾å¯¹è±¡
+	 * ²éÕÒ¶ÔÏó
 	 * @param str
 	 * @param obj
 	 * @return
@@ -108,7 +108,7 @@ public class DaoSupport implements DAO {
 	}
 
 	/**
-	 * æŸ¥æ‰¾å¯¹è±¡
+	 * ²éÕÒ¶ÔÏó
 	 * @param str
 	 * @param obj
 	 * @return

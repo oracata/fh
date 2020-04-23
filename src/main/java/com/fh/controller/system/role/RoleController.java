@@ -34,23 +34,23 @@ import com.fh.util.PageData;
 import com.fh.util.RightsHelper;
 import com.fh.util.Tools;
 /** 
- * ç±»åç§°ï¼šRoleController
- * åˆ›å»ºäººï¼šFH 
- * åˆ›å»ºæ—¶é—´ï¼š2014å¹´6æœˆ30æ—¥
+ * ÀàÃû³Æ£ºRoleController
+ * ´´½¨ÈË£ºFH 
+ * ´´½¨Ê±¼ä£º2014Äê6ÔÂ30ÈÕ
  * @version
  */
 @Controller
 @RequestMapping(value="/role")
 public class RoleController extends BaseController {
 	
-	String menuUrl = "role.do"; //èœå•åœ°å€(æƒé™ç”¨)
+	String menuUrl = "role.do"; //²Ëµ¥µØÖ·(È¨ÏŞÓÃ)
 	@Resource(name="menuService")
 	private MenuService menuService;
 	@Resource(name="roleService")
 	private RoleService roleService;
 	
 	/**
-	 * æƒé™(å¢åˆ æ”¹æŸ¥)
+	 * È¨ÏŞ(ÔöÉ¾¸Ä²é)
 	 */
 	@RequestMapping(value="/qx")
 	public ModelAndView qx()throws Exception{
@@ -69,7 +69,7 @@ public class RoleController extends BaseController {
 	}
 	
 	/**
-	 * Kæƒé™
+	 * KÈ¨ÏŞ
 	 */
 	@RequestMapping(value="/kfqx")
 	public ModelAndView kfqx()throws Exception{
@@ -88,7 +88,7 @@ public class RoleController extends BaseController {
 	}
 	
 	/**
-	 * cæƒé™
+	 * cÈ¨ÏŞ
 	 */
 	@RequestMapping(value="/gysqxc")
 	public ModelAndView gysqxc()throws Exception{
@@ -107,7 +107,7 @@ public class RoleController extends BaseController {
 	}
 	
 	/**
-	 * åˆ—è¡¨
+	 * ÁĞ±í
 	 */
 	@RequestMapping
 	public ModelAndView list(Page page)throws Exception{
@@ -119,25 +119,25 @@ public class RoleController extends BaseController {
 			if(roleId == null || "".equals(roleId)){
 				pd.put("ROLE_ID", "1");
 			}
-			List<Role> roleList = roleService.listAllRoles();				//åˆ—å‡ºæ‰€æœ‰éƒ¨é—¨
-			List<Role> roleList_z = roleService.listAllRolesByPId(pd);		//åˆ—å‡ºæ­¤éƒ¨é—¨çš„æ‰€æœ‰ä¸‹çº§
+			List<Role> roleList = roleService.listAllRoles();				//ÁĞ³öËùÓĞ²¿ÃÅ
+			List<Role> roleList_z = roleService.listAllRolesByPId(pd);		//ÁĞ³ö´Ë²¿ÃÅµÄËùÓĞÏÂ¼¶
 			
-			List<PageData> kefuqxlist = roleService.listAllkefu(pd);		//ç®¡ç†æƒé™åˆ—è¡¨
-			List<PageData> gysqxlist = roleService.listAllGysQX(pd);		//ç”¨æˆ·æƒé™åˆ—è¡¨
-			pd = roleService.findObjectById(pd);							//å–å¾—ç‚¹å‡»éƒ¨é—¨
+			List<PageData> kefuqxlist = roleService.listAllkefu(pd);		//¹ÜÀíÈ¨ÏŞÁĞ±í
+			List<PageData> gysqxlist = roleService.listAllGysQX(pd);		//ÓÃ»§È¨ÏŞÁĞ±í
+			pd = roleService.findObjectById(pd);							//È¡µÃµã»÷²¿ÃÅ
 			mv.addObject("pd", pd);
 			mv.addObject("kefuqxlist", kefuqxlist);
 			mv.addObject("gysqxlist", gysqxlist);
 			mv.addObject("roleList", roleList);
 			mv.addObject("roleList_z", roleList_z);
 			mv.setViewName("system/role/role_list");
-			mv.addObject(Const.SESSION_QX,this.getHC());	//æŒ‰é’®æƒé™
+			mv.addObject(Const.SESSION_QX,this.getHC());	//°´Å¥È¨ÏŞ
 		
 		return mv;
 	}
 	
 	/**
-	 * æ–°å¢é¡µé¢
+	 * ĞÂÔöÒ³Ãæ
 	 */
 	@RequestMapping(value="/toAdd")
 	public ModelAndView toAdd(Page page){
@@ -154,7 +154,7 @@ public class RoleController extends BaseController {
 	}
 	
 	/**
-	 * ä¿å­˜æ–°å¢ä¿¡æ¯
+	 * ±£´æĞÂÔöĞÅÏ¢
 	 */
 	@RequestMapping(value="/add",method=RequestMethod.POST)
 	public ModelAndView add()throws Exception{
@@ -163,7 +163,7 @@ public class RoleController extends BaseController {
 		try{
 			pd = this.getPageData();
 			
-			String parent_id = pd.getString("PARENT_ID");		//çˆ¶ç±»è§’è‰²id
+			String parent_id = pd.getString("PARENT_ID");		//¸¸Àà½ÇÉ«id
 			pd.put("ROLE_ID", parent_id);			
 			if("0".equals(parent_id)){
 				pd.put("RIGHTS", "");
@@ -177,24 +177,24 @@ public class RoleController extends BaseController {
 			String UUID = this.get32UUID();
 			
 				pd.put("GL_ID", UUID);
-				pd.put("FX_QX", 0);				//å‘ä¿¡æƒé™
-				pd.put("FW_QX", 0);				//æœåŠ¡æƒé™
-				pd.put("QX1", 0);				//æ“ä½œæƒé™
-				pd.put("QX2", 0);				//äº§å“æƒé™
-				pd.put("QX3", 0);				//é¢„ç•™æƒé™
-				pd.put("QX4", 0);				//é¢„ç•™æƒé™
-				if(Jurisdiction.buttonJurisdiction(menuUrl, "add")){roleService.saveKeFu(pd);}//ä¿å­˜åˆ°Kæƒé™è¡¨
+				pd.put("FX_QX", 0);				//·¢ĞÅÈ¨ÏŞ
+				pd.put("FW_QX", 0);				//·şÎñÈ¨ÏŞ
+				pd.put("QX1", 0);				//²Ù×÷È¨ÏŞ
+				pd.put("QX2", 0);				//²úÆ·È¨ÏŞ
+				pd.put("QX3", 0);				//Ô¤ÁôÈ¨ÏŞ
+				pd.put("QX4", 0);				//Ô¤ÁôÈ¨ÏŞ
+				if(Jurisdiction.buttonJurisdiction(menuUrl, "add")){roleService.saveKeFu(pd);}//±£´æµ½KÈ¨ÏŞ±í
 				
 				pd.put("U_ID", UUID);
-				pd.put("C1", 0);				//æ¯æ—¥å‘ä¿¡æ•°é‡
+				pd.put("C1", 0);				//Ã¿ÈÕ·¢ĞÅÊıÁ¿
 				pd.put("C2", 0);
 				pd.put("C3", 0);
 				pd.put("C4", 0);
-				pd.put("Q1", 0);				//æƒé™1
-				pd.put("Q2", 0);				//æƒé™2
+				pd.put("Q1", 0);				//È¨ÏŞ1
+				pd.put("Q2", 0);				//È¨ÏŞ2
 				pd.put("Q3", 0);
 				pd.put("Q4", 0);
-				if(Jurisdiction.buttonJurisdiction(menuUrl, "add")){roleService.saveGYSQX(pd);}//ä¿å­˜åˆ°Gæƒé™è¡¨
+				if(Jurisdiction.buttonJurisdiction(menuUrl, "add")){roleService.saveGYSQX(pd);}//±£´æµ½GÈ¨ÏŞ±í
 				pd.put("QX_ID", UUID);
 			
 			pd.put("ROLE_ID", UUID);
@@ -213,7 +213,7 @@ public class RoleController extends BaseController {
 	}
 	
 	/**
-	 * è¯·æ±‚ç¼–è¾‘
+	 * ÇëÇó±à¼­
 	 */
 	@RequestMapping(value="/toEdit")
 	public ModelAndView toEdit( String ROLE_ID )throws Exception{
@@ -232,7 +232,7 @@ public class RoleController extends BaseController {
 	}
 	
 	/**
-	 * ç¼–è¾‘
+	 * ±à¼­
 	 */
 	@RequestMapping(value="/edit")
 	public ModelAndView edit()throws Exception{
@@ -251,7 +251,7 @@ public class RoleController extends BaseController {
 	}
 	
 	/**
-	 * è¯·æ±‚è§’è‰²èœå•æˆæƒé¡µé¢
+	 * ÇëÇó½ÇÉ«²Ëµ¥ÊÚÈ¨Ò³Ãæ
 	 */
 	@RequestMapping(value="/auth")
 	public String auth(@RequestParam String ROLE_ID,Model model)throws Exception{
@@ -284,7 +284,7 @@ public class RoleController extends BaseController {
 	}
 	
 	/**
-	 * è¯·æ±‚è§’è‰²æŒ‰é’®æˆæƒé¡µé¢
+	 * ÇëÇó½ÇÉ«°´Å¥ÊÚÈ¨Ò³Ãæ
 	 */
 	@RequestMapping(value="/button")
 	public ModelAndView button(@RequestParam String ROLE_ID,@RequestParam String msg,Model model)throws Exception{
@@ -330,7 +330,7 @@ public class RoleController extends BaseController {
 	}
 	
 	/**
-	 * ä¿å­˜è§’è‰²èœå•æƒé™
+	 * ±£´æ½ÇÉ«²Ëµ¥È¨ÏŞ
 	 */
 	@RequestMapping(value="/auth/save")
 	public void saveAuth(@RequestParam String ROLE_ID,@RequestParam String menuIds,PrintWriter out)throws Exception{
@@ -362,7 +362,7 @@ public class RoleController extends BaseController {
 	}
 	
 	/**
-	 * ä¿å­˜è§’è‰²æŒ‰é’®æƒé™
+	 * ±£´æ½ÇÉ«°´Å¥È¨ÏŞ
 	 */
 	@RequestMapping(value="/roleButton/save")
 	public void orleButton(@RequestParam String ROLE_ID,@RequestParam String menuIds,@RequestParam String msg,PrintWriter out)throws Exception{
@@ -387,7 +387,7 @@ public class RoleController extends BaseController {
 	}
 	
 	/**
-	 * åˆ é™¤
+	 * É¾³ı
 	 */
 	@RequestMapping(value="/delete")
 	@ResponseBody
@@ -398,7 +398,7 @@ public class RoleController extends BaseController {
 		try{
 			if(Jurisdiction.buttonJurisdiction(menuUrl, "del")){
 				pd.put("ROLE_ID", ROLE_ID);
-				List<Role> roleList_z = roleService.listAllRolesByPId(pd);		//åˆ—å‡ºæ­¤éƒ¨é—¨çš„æ‰€æœ‰ä¸‹çº§
+				List<Role> roleList_z = roleService.listAllRolesByPId(pd);		//ÁĞ³ö´Ë²¿ÃÅµÄËùÓĞÏÂ¼¶
 				if(roleList_z.size() > 0){
 					errInfo = "false";
 				}else{
@@ -422,13 +422,13 @@ public class RoleController extends BaseController {
 		return AppUtil.returnObject(new PageData(), map);
 	}
 	
-	/* ===============================æƒé™================================== */
+	/* ===============================È¨ÏŞ================================== */
 	public Map<String, String> getHC(){
-		Subject currentUser = SecurityUtils.getSubject();  //shiroç®¡ç†çš„session
+		Subject currentUser = SecurityUtils.getSubject();  //shiro¹ÜÀíµÄsession
 		Session session = currentUser.getSession();
 		return (Map<String, String>)session.getAttribute(Const.SESSION_QX);
 	}
-	/* ===============================æƒé™================================== */
+	/* ===============================È¨ÏŞ================================== */
 	
 
 }

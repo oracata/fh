@@ -15,16 +15,16 @@ import java.nio.channels.FileChannel.MapMode;
 public class FileUtil {
 
 	public static void main(String[] args) {
-		String dirName = "d:/FH/topic/";// åˆ›å»ºç›®å½•
+		String dirName = "d:/FH/topic/";// ´´½¨Ä¿Â¼
 		FileUtil.createDir(dirName);
 	}
 
 	/**
-	 * åˆ›å»ºç›®å½•
+	 * ´´½¨Ä¿Â¼
 	 * 
 	 * @param destDirName
-	 *            ç›®æ ‡ç›®å½•å
-	 * @return ç›®å½•åˆ›å»ºæˆåŠŸè¿”å›trueï¼Œå¦åˆ™è¿”å›false
+	 *            Ä¿±êÄ¿Â¼Ãû
+	 * @return Ä¿Â¼´´½¨³É¹¦·µ»Øtrue£¬·ñÔò·µ»Øfalse
 	 */
 	public static boolean createDir(String destDirName) {
 		File dir = new File(destDirName);
@@ -34,7 +34,7 @@ public class FileUtil {
 		if (!destDirName.endsWith(File.separator)) {
 			destDirName = destDirName + File.separator;
 		}
-		// åˆ›å»ºå•ä¸ªç›®å½•
+		// ´´½¨µ¥¸öÄ¿Â¼
 		if (dir.mkdirs()) {
 			return true;
 		} else {
@@ -43,10 +43,10 @@ public class FileUtil {
 	}
 
 	/**
-	 * åˆ é™¤æ–‡ä»¶
+	 * É¾³ıÎÄ¼ş
 	 * 
 	 * @param filePathAndName
-	 *            String æ–‡ä»¶è·¯å¾„åŠåç§° å¦‚c:/fqf.txt
+	 *            String ÎÄ¼şÂ·¾¶¼°Ãû³Æ Èçc:/fqf.txt
 	 * @param fileContent
 	 *            String
 	 * @return boolean
@@ -59,7 +59,7 @@ public class FileUtil {
 			myDelFile.delete();
 
 		} catch (Exception e) {
-			System.out.println("åˆ é™¤æ–‡ä»¶æ“ä½œå‡ºé”™");
+			System.out.println("É¾³ıÎÄ¼ş²Ù×÷³ö´í");
 			e.printStackTrace();
 
 		}
@@ -67,9 +67,9 @@ public class FileUtil {
 	}
 
 	/**
-	 * è¯»å–åˆ°å­—èŠ‚æ•°ç»„0
+	 * ¶ÁÈ¡µ½×Ö½ÚÊı×é0
 	 * 
-	 * @param filePath //è·¯å¾„
+	 * @param filePath //Â·¾¶
 	 * @throws IOException
 	 */
 	public static byte[] getContent(String filePath) throws IOException {
@@ -87,7 +87,7 @@ public class FileUtil {
 				&& (numRead = fi.read(buffer, offset, buffer.length - offset)) >= 0) {
 			offset += numRead;
 		}
-		// ç¡®ä¿æ‰€æœ‰æ•°æ®å‡è¢«è¯»å–
+		// È·±£ËùÓĞÊı¾İ¾ù±»¶ÁÈ¡
 		if (offset != buffer.length) {
 			throw new IOException("Could not completely read file "
 					+ file.getName());
@@ -97,7 +97,7 @@ public class FileUtil {
 	}
 
 	/**
-	 * è¯»å–åˆ°å­—èŠ‚æ•°ç»„1
+	 * ¶ÁÈ¡µ½×Ö½ÚÊı×é1
 	 * 
 	 * @param filePath
 	 * @return
@@ -134,7 +134,7 @@ public class FileUtil {
 	}
 
 	/**
-	 * è¯»å–åˆ°å­—èŠ‚æ•°ç»„2
+	 * ¶ÁÈ¡µ½×Ö½ÚÊı×é2
 	 * 
 	 * @param filePath
 	 * @return
@@ -176,7 +176,7 @@ public class FileUtil {
 	}
 
 	/**
-	 * Mapped File way MappedByteBuffer å¯ä»¥åœ¨å¤„ç†å¤§æ–‡ä»¶æ—¶ï¼Œæå‡æ€§èƒ½
+	 * Mapped File way MappedByteBuffer ¿ÉÒÔÔÚ´¦Àí´óÎÄ¼şÊ±£¬ÌáÉıĞÔÄÜ
 	 * 
 	 * @param filename
 	 * @return

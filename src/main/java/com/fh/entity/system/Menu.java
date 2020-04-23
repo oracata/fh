@@ -3,12 +3,12 @@ package com.fh.entity.system;
 import java.util.List;
 /**
  * 
-* ç±»åç§°ï¼šMenu.java
-* ç±»æè¿°ï¼š 
+* ÀàÃû³Æ£ºMenu.java
+* ÀàÃèÊö£º 
 * @author FH
-* ä½œè€…å•ä½ï¼š 
-* è”ç³»æ–¹å¼ï¼š
-* åˆ›å»ºæ—¶é—´ï¼š2014å¹´6æœˆ28æ—¥
+* ×÷Õßµ¥Î»£º 
+* ÁªÏµ·½Ê½£º
+* ´´½¨Ê±¼ä£º2014Äê6ÔÂ28ÈÕ
 * @version 1.0
  */
 public class Menu {

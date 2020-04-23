@@ -34,52 +34,52 @@ public class RoleService{
 		
 	}
 	
-	//é€šè¿‡å½“å‰ç™»å½•ç”¨çš„è§’è‰²idè·å–ç®¡ç†æƒé™æ•°æ®
+	//Í¨¹ıµ±Ç°µÇÂ¼ÓÃµÄ½ÇÉ«id»ñÈ¡¹ÜÀíÈ¨ÏŞÊı¾İ
 	public PageData findGLbyrid(PageData pd) throws Exception {
 		return (PageData) dao.findForObject("RoleMapper.findGLbyrid", pd);
 	}
 	
-	//é€šè¿‡å½“å‰ç™»å½•ç”¨çš„è§’è‰²idè·å–ç”¨æˆ·æƒé™æ•°æ®
+	//Í¨¹ıµ±Ç°µÇÂ¼ÓÃµÄ½ÇÉ«id»ñÈ¡ÓÃ»§È¨ÏŞÊı¾İ
 	public PageData findYHbyrid(PageData pd) throws Exception {
 		return (PageData) dao.findForObject("RoleMapper.findYHbyrid", pd);
 	}
 	
-	//åˆ—å‡ºæ­¤è§’è‰²ä¸‹çš„æ‰€æœ‰ç”¨æˆ·
+	//ÁĞ³ö´Ë½ÇÉ«ÏÂµÄËùÓĞÓÃ»§
 	public List<PageData> listAllUByRid(PageData pd) throws Exception {
 		return (List<PageData>) dao.findForList("RoleMapper.listAllUByRid", pd);
 		
 	}
 	
-	//åˆ—å‡ºæ­¤è§’è‰²ä¸‹çš„æ‰€æœ‰ä¼šå‘˜
+	//ÁĞ³ö´Ë½ÇÉ«ÏÂµÄËùÓĞ»áÔ±
 	public List<PageData> listAllAppUByRid(PageData pd) throws Exception {
 		return (List<PageData>) dao.findForList("RoleMapper.listAllAppUByRid", pd);
 		
 	}
 	
 	/**
-	 * åˆ—å‡ºæ­¤éƒ¨é—¨çš„æ‰€æœ‰ä¸‹çº§
+	 * ÁĞ³ö´Ë²¿ÃÅµÄËùÓĞÏÂ¼¶
 	 */
 	public List<Role> listAllRolesByPId(PageData pd) throws Exception {
 		return (List<Role>) dao.findForList("RoleMapper.listAllRolesByPId", pd);
 		
 	}
 	
-	//åˆ—å‡ºKæƒé™è¡¨é‡Œçš„æ•°æ® 
+	//ÁĞ³öKÈ¨ÏŞ±íÀïµÄÊı¾İ 
 	public List<PageData> listAllkefu(PageData pd) throws Exception {
 		return (List<PageData>) dao.findForList("RoleMapper.listAllkefu", pd);
 	}
 	
-	//åˆ—å‡ºGæƒé™è¡¨é‡Œçš„æ•°æ® 
+	//ÁĞ³öGÈ¨ÏŞ±íÀïµÄÊı¾İ 
 	public List<PageData> listAllGysQX(PageData pd) throws Exception {
 		return (List<PageData>) dao.findForList("RoleMapper.listAllGysQX", pd);
 	}
 	
-	//åˆ é™¤Kæƒé™è¡¨é‡Œå¯¹åº”çš„æ•°æ®
+	//É¾³ıKÈ¨ÏŞ±íÀï¶ÔÓ¦µÄÊı¾İ
 	public void deleteKeFuById(String ROLE_ID) throws Exception {
 		dao.delete("RoleMapper.deleteKeFuById", ROLE_ID);
 	}
 	
-	//åˆ é™¤Gæƒé™è¡¨é‡Œå¯¹åº”çš„æ•°æ®
+	//É¾³ıGÈ¨ÏŞ±íÀï¶ÔÓ¦µÄÊı¾İ
 	public void deleteGById(String ROLE_ID) throws Exception {
 		dao.delete("RoleMapper.deleteGById", ROLE_ID);
 	}
@@ -99,28 +99,28 @@ public class RoleService{
 	}
 	
 	/**
-	 * æƒé™(å¢åˆ æ”¹æŸ¥)
+	 * È¨ÏŞ(ÔöÉ¾¸Ä²é)
 	 */
 	public void updateQx(String msg,PageData pd) throws Exception {
 		dao.update("RoleMapper."+msg, pd);
 	}
 	
 	/**
-	 * å®¢æœæƒé™
+	 * ¿Í·şÈ¨ÏŞ
 	 */
 	public void updateKFQx(String msg,PageData pd) throws Exception {
 		dao.update("RoleMapper."+msg, pd);
 	}
 	
 	/**
-	 * Gcæƒé™
+	 * GcÈ¨ÏŞ
 	 */
 	public void gysqxc(String msg,PageData pd) throws Exception {
 		dao.update("RoleMapper."+msg, pd);
 	}
 	
 	/**
-	 * ç»™å…¨éƒ¨å­èŒä½åŠ èœå•æƒé™
+	 * ¸øÈ«²¿×ÓÖ°Î»¼Ó²Ëµ¥È¨ÏŞ
 	 */
 	public void setAllRights(PageData pd) throws Exception {
 		dao.update("RoleMapper.setAllRights", pd);
@@ -128,35 +128,35 @@ public class RoleService{
 	}
 	
 	/**
-	 * æ·»åŠ 
+	 * Ìí¼Ó
 	 */
 	public void add(PageData pd) throws Exception {
 		dao.findForList("RoleMapper.insert", pd);
 	}
 	
 	/**
-	 * ä¿å­˜å®¢æœæƒé™
+	 * ±£´æ¿Í·şÈ¨ÏŞ
 	 */
 	public void saveKeFu(PageData pd) throws Exception {
 		dao.findForList("RoleMapper.saveKeFu", pd);
 	}
 	
 	/**
-	 * ä¿å­˜Gæƒé™
+	 * ±£´æGÈ¨ÏŞ
 	 */
 	public void saveGYSQX(PageData pd) throws Exception {
 		dao.findForList("RoleMapper.saveGYSQX", pd);
 	}
 	
 	/**
-	 * é€šè¿‡idæŸ¥æ‰¾
+	 * Í¨¹ıid²éÕÒ
 	 */
 	public PageData findObjectById(PageData pd) throws Exception {
 		return (PageData)dao.findForObject("RoleMapper.findObjectById", pd);
 	}
 	
 	/**
-	 * ç¼–è¾‘è§’è‰²
+	 * ±à¼­½ÇÉ«
 	 */
 	public PageData edit(PageData pd) throws Exception {
 		return (PageData)dao.findForObject("RoleMapper.edit", pd);

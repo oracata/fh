@@ -22,9 +22,9 @@ import com.fh.util.PathUtil;
 import com.fh.util.TwoDimensionCode;
 
 /** 
- * ç±»åç§°ï¼šToolController
- * åˆ›å»ºäººï¼šFH 
- * åˆ›å»ºæ—¶é—´ï¼š2015å¹´4æœˆ4æ—¥
+ * ÀàÃû³Æ£ºToolController
+ * ´´½¨ÈË£ºFH 
+ * ´´½¨Ê±¼ä£º2015Äê4ÔÂ4ÈÕ
  * @version
  */
 @Controller
@@ -33,7 +33,7 @@ public class ToolController extends BaseController {
 	
 	
 	/**
-	 * å»æ¥å£æµ‹è¯•é¡µé¢
+	 * È¥½Ó¿Ú²âÊÔÒ³Ãæ
 	 */
 	@RequestMapping(value="/interfaceTest")
 	public ModelAndView editEmail() throws Exception{
@@ -46,7 +46,7 @@ public class ToolController extends BaseController {
 	}
 	
 	/**
-	 *	æ¥å£å†…éƒ¨è¯·æ±‚
+	 *	½Ó¿ÚÄÚ²¿ÇëÇó
 	 * @param 
 	 * @throws Exception
 	 */
@@ -58,12 +58,12 @@ public class ToolController extends BaseController {
 		pd = this.getPageData();
 		String errInfo = "success",str = "",rTime="";
 		try{
-			long startTime = System.currentTimeMillis(); 					//è¯·æ±‚èµ·å§‹æ—¶é—´_æ¯«ç§’
+			long startTime = System.currentTimeMillis(); 					//ÇëÇóÆğÊ¼Ê±¼ä_ºÁÃë
 			URL url = new URL(pd.getString("serverUrl"));
 			HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-			connection.setRequestMethod(pd.getString("requestMethod"));		//è¯·æ±‚ç±»å‹  POST or GET	
+			connection.setRequestMethod(pd.getString("requestMethod"));		//ÇëÇóÀàĞÍ  POST or GET	
 			BufferedReader in = new BufferedReader(new InputStreamReader(url.openStream()));
-			long endTime = System.currentTimeMillis(); 						//è¯·æ±‚ç»“æŸæ—¶é—´_æ¯«ç§’
+			long endTime = System.currentTimeMillis(); 						//ÇëÇó½áÊøÊ±¼ä_ºÁÃë
 			String temp = "";
 			while((temp = in.readLine()) != null){ 
 				str = str + temp;
@@ -73,14 +73,14 @@ public class ToolController extends BaseController {
 		catch(Exception e){
 			errInfo = "error";
 		}
-		map.put("errInfo", errInfo);	//çŠ¶æ€ä¿¡æ¯
-		map.put("result", str);			//è¿”å›ç»“æœ
-		map.put("rTime", rTime);		//æœåŠ¡å™¨è¯·æ±‚æ—¶é—´ æ¯«ç§’
+		map.put("errInfo", errInfo);	//×´Ì¬ĞÅÏ¢
+		map.put("result", str);			//·µ»Ø½á¹û
+		map.put("rTime", rTime);		//·şÎñÆ÷ÇëÇóÊ±¼ä ºÁÃë
 		return AppUtil.returnObject(new PageData(), map);
 	}
 	
 	/**
-	 * å‘é€é‚®ä»¶é¡µé¢
+	 * ·¢ËÍÓÊ¼şÒ³Ãæ
 	 */
 	@RequestMapping(value="/goSendEmail")
 	public ModelAndView goSendEmail() throws Exception{
@@ -93,7 +93,7 @@ public class ToolController extends BaseController {
 	}
 	
 	/**
-	 * äºŒç»´ç é¡µé¢
+	 * ¶şÎ¬ÂëÒ³Ãæ
 	 */
 	@RequestMapping(value="/goTwoDimensionCode")
 	public ModelAndView goTwoDimensionCode() throws Exception{
@@ -106,7 +106,7 @@ public class ToolController extends BaseController {
 	}
 	
 	/**
-	 *	ç”ŸæˆäºŒç»´ç 
+	 *	Éú³É¶şÎ¬Âë
 	 * @param args
 	 * @throws Exception
 	 */
@@ -116,25 +116,25 @@ public class ToolController extends BaseController {
 		Map<String,String> map = new HashMap<String,String>();
 		PageData pd = new PageData();
 		pd = this.getPageData();
-		String errInfo = "success", encoderImgId = this.get32UUID()+".png"; //encoderImgIdæ­¤å¤„äºŒç»´ç çš„å›¾ç‰‡å
-		String encoderContent = pd.getString("encoderContent");				//å†…å®¹
+		String errInfo = "success", encoderImgId = this.get32UUID()+".png"; //encoderImgId´Ë´¦¶şÎ¬ÂëµÄÍ¼Æ¬Ãû
+		String encoderContent = pd.getString("encoderContent");				//ÄÚÈİ
 		if(null == encoderContent){
 			errInfo = "error";
 		}else{
 			try {
-				String filePath = PathUtil.getClasspath() + Const.FILEPATHTWODIMENSIONCODE + encoderImgId;  //å­˜æ”¾è·¯å¾„
-				TwoDimensionCode.encoderQRCode(encoderContent, filePath, "png");							//æ‰§è¡Œç”ŸæˆäºŒç»´ç 
+				String filePath = PathUtil.getClasspath() + Const.FILEPATHTWODIMENSIONCODE + encoderImgId;  //´æ·ÅÂ·¾¶
+				TwoDimensionCode.encoderQRCode(encoderContent, filePath, "png");							//Ö´ĞĞÉú³É¶şÎ¬Âë
 			} catch (Exception e) {
 				errInfo = "error";
 			}
 		}
-		map.put("result", errInfo);						//è¿”å›ç»“æœ
-		map.put("encoderImgId", encoderImgId);			//äºŒç»´ç å›¾ç‰‡å
+		map.put("result", errInfo);						//·µ»Ø½á¹û
+		map.put("encoderImgId", encoderImgId);			//¶şÎ¬ÂëÍ¼Æ¬Ãû
 		return AppUtil.returnObject(new PageData(), map);
 	}
 	
 	/**
-	 *	è§£æäºŒç»´ç 
+	 *	½âÎö¶şÎ¬Âë
 	 * @param args
 	 * @throws Exception
 	 */
@@ -145,25 +145,25 @@ public class ToolController extends BaseController {
 		PageData pd = new PageData();
 		pd = this.getPageData();
 		String errInfo = "success",readContent="";
-		String imgId = pd.getString("imgId");//å†…å®¹
+		String imgId = pd.getString("imgId");//ÄÚÈİ
 		if(null == imgId){
 			errInfo = "error";
 		}else{
 			try {
-				String filePath = PathUtil.getClasspath() + Const.FILEPATHTWODIMENSIONCODE + imgId;  //å­˜æ”¾è·¯å¾„
-				readContent = TwoDimensionCode.decoderQRCode(filePath);//æ‰§è¡Œè¯»å–äºŒç»´ç 
+				String filePath = PathUtil.getClasspath() + Const.FILEPATHTWODIMENSIONCODE + imgId;  //´æ·ÅÂ·¾¶
+				readContent = TwoDimensionCode.decoderQRCode(filePath);//Ö´ĞĞ¶ÁÈ¡¶şÎ¬Âë
 			} catch (Exception e) {
 				errInfo = "error";
 			}
 		}
-		map.put("result", errInfo);						//è¿”å›ç»“æœ
-		map.put("readContent", readContent);			//è¯»å–çš„å†…å®¹
+		map.put("result", errInfo);						//·µ»Ø½á¹û
+		map.put("readContent", readContent);			//¶ÁÈ¡µÄÄÚÈİ
 		return AppUtil.returnObject(new PageData(), map);
 	}
 	
 	
 	/**
-	 * å¤šçº§åˆ«æ ‘é¡µé¢
+	 * ¶à¼¶±ğÊ÷Ò³Ãæ
 	 */
 	@RequestMapping(value="/ztree")
 	public ModelAndView ztree() throws Exception{
@@ -176,7 +176,7 @@ public class ToolController extends BaseController {
 	}
 	
 	/**
-	 * åœ°å›¾é¡µé¢
+	 * µØÍ¼Ò³Ãæ
 	 */
 	@RequestMapping(value="/map")
 	public ModelAndView map() throws Exception{
@@ -189,7 +189,7 @@ public class ToolController extends BaseController {
 	}
 	
 	/**
-	 * è·å–åœ°å›¾åæ ‡é¡µé¢
+	 * »ñÈ¡µØÍ¼×ø±êÒ³Ãæ
 	 */
 	@RequestMapping(value="/mapXY")
 	public ModelAndView mapXY() throws Exception{
@@ -202,7 +202,7 @@ public class ToolController extends BaseController {
 	}
 	
 	/**
-	 *	æ ¹æ®ç»çº¬åº¦è®¡ç®—è·ç¦»
+	 *	¸ù¾İ¾­Î³¶È¼ÆËã¾àÀë
 	 * @param args
 	 * @throws Exception
 	 */
@@ -218,13 +218,13 @@ public class ToolController extends BaseController {
 		} catch (Exception e) {
 			errInfo = "error";
 		}
-		map.put("result", errInfo);				//è¿”å›ç»“æœ
-		map.put("distance", distance);			//è·ç¦»
+		map.put("result", errInfo);				//·µ»Ø½á¹û
+		map.put("distance", distance);			//¾àÀë
 		return AppUtil.returnObject(new PageData(), map);
 	}
 	
 	/**
-	 * æ‰“å°æµ‹è¯•é¡µé¢
+	 * ´òÓ¡²âÊÔÒ³Ãæ
 	 */
 	@RequestMapping(value="/printTest")
 	public ModelAndView printTest() throws Exception{
@@ -237,7 +237,7 @@ public class ToolController extends BaseController {
 	}
 	
 	/**
-	 * æ‰“å°é¢„è§ˆé¡µé¢
+	 * ´òÓ¡Ô¤ÀÀÒ³Ãæ
 	 */
 	@RequestMapping(value="/printPage")
 	public ModelAndView printPage() throws Exception{

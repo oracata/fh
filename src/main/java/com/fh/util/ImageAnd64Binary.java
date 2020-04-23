@@ -13,8 +13,8 @@ import Decoder.BASE64Encoder;
 public class ImageAnd64Binary {
     public static void main(String[] args){
     	
-		String imgSrcPath 	 = "d:/abc/123.jpg";     //ç”Ÿæˆ64ç¼–ç çš„å›¾ç‰‡çš„è·¯å¾„
-		String imgCreatePath = "E:\\apache-tomcat-6.0.37\\webapps/pro/ueditor2/jsp/upload1/20140318/480ace2bfc6e44608595bd4adbdeb067.jpg";     //å°†64ç¼–ç ç”Ÿæˆå›¾ç‰‡çš„è·¯å¾„
+		String imgSrcPath 	 = "d:/abc/123.jpg";     //Éú³É64±àÂëµÄÍ¼Æ¬µÄÂ·¾¶
+		String imgCreatePath = "E:\\apache-tomcat-6.0.37\\webapps/pro/ueditor2/jsp/upload1/20140318/480ace2bfc6e44608595bd4adbdeb067.jpg";     //½«64±àÂëÉú³ÉÍ¼Æ¬µÄÂ·¾¶
 		imgCreatePath=imgCreatePath.replaceAll("\\\\", "/");
 		System.out.println(imgCreatePath);
     	String strImg = getImageStr(imgSrcPath);
@@ -23,15 +23,15 @@ public class ImageAnd64Binary {
     }
     
    /**
-     * å°†å›¾ç‰‡æ–‡ä»¶è½¬åŒ–ä¸ºå­—èŠ‚æ•°ç»„å­—ç¬¦ä¸²ï¼Œå¹¶å¯¹å…¶è¿›è¡ŒBase64ç¼–ç å¤„ç†
-     * @param imgSrcPath ç”Ÿæˆ64ç¼–ç çš„å›¾ç‰‡çš„è·¯å¾„
+     * ½«Í¼Æ¬ÎÄ¼ş×ª»¯Îª×Ö½ÚÊı×é×Ö·û´®£¬²¢¶ÔÆä½øĞĞBase64±àÂë´¦Àí
+     * @param imgSrcPath Éú³É64±àÂëµÄÍ¼Æ¬µÄÂ·¾¶
      * @return
      */
     public static String getImageStr(String imgSrcPath){
         InputStream in = null;
         byte[] data = null;
         
-        //è¯»å–å›¾ç‰‡å­—èŠ‚æ•°ç»„
+        //¶ÁÈ¡Í¼Æ¬×Ö½ÚÊı×é
         try {
             in = new FileInputStream(imgSrcPath);        
             data = new byte[in.available()];
@@ -41,27 +41,27 @@ public class ImageAnd64Binary {
             e.printStackTrace();
         }
         
-        //å¯¹å­—èŠ‚æ•°ç»„Base64ç¼–ç 
+        //¶Ô×Ö½ÚÊı×éBase64±àÂë
         BASE64Encoder encoder = new BASE64Encoder();
         
-        return encoder.encode(data);//è¿”å›Base64ç¼–ç è¿‡çš„å­—èŠ‚æ•°ç»„å­—ç¬¦ä¸²
+        return encoder.encode(data);//·µ»ØBase64±àÂë¹ıµÄ×Ö½ÚÊı×é×Ö·û´®
     }
     
     /**
-     * å¯¹å­—èŠ‚æ•°ç»„å­—ç¬¦ä¸²è¿›è¡ŒBase64è§£ç å¹¶ç”Ÿæˆå›¾ç‰‡
-     * @param imgStr            è½¬æ¢ä¸ºå›¾ç‰‡çš„å­—ç¬¦ä¸²
-     * @param imgCreatePath     å°†64ç¼–ç ç”Ÿæˆå›¾ç‰‡çš„è·¯å¾„
+     * ¶Ô×Ö½ÚÊı×é×Ö·û´®½øĞĞBase64½âÂë²¢Éú³ÉÍ¼Æ¬
+     * @param imgStr            ×ª»»ÎªÍ¼Æ¬µÄ×Ö·û´®
+     * @param imgCreatePath     ½«64±àÂëÉú³ÉÍ¼Æ¬µÄÂ·¾¶
      * @return
      */
     public static boolean generateImage(String imgStr, String imgCreatePath){
-        if (imgStr == null) //å›¾åƒæ•°æ®ä¸ºç©º
+        if (imgStr == null) //Í¼ÏñÊı¾İÎª¿Õ
             return false;
         BASE64Decoder decoder = new BASE64Decoder();
         try {
-            //Base64è§£ç 
+            //Base64½âÂë
             byte[] b = decoder.decodeBuffer(imgStr);
             for(int i=0;i<b.length;++i) {
-                if(b[i]<0) {//è°ƒæ•´å¼‚å¸¸æ•°æ®
+                if(b[i]<0) {//µ÷ÕûÒì³£Êı¾İ
                     b[i]+=256;
                 }
             }

@@ -12,17 +12,17 @@ import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 
 
 /**
- * ä»EXCELå¯¼å…¥åˆ°æ•°æ®åº“
- * åˆ›å»ºäººï¼šFH åˆ›å»ºæ—¶é—´ï¼š2014å¹´12æœˆ23æ—¥
+ * ´ÓEXCELµ¼Èëµ½Êı¾İ¿â
+ * ´´½¨ÈË£ºFH ´´½¨Ê±¼ä£º2014Äê12ÔÂ23ÈÕ
  * @version
  */
 public class ObjectExcelRead {
 
 	/**
-	 * @param filepath //æ–‡ä»¶è·¯å¾„
-	 * @param filename //æ–‡ä»¶å
-	 * @param startrow //å¼€å§‹è¡Œå·
-	 * @param startcol //å¼€å§‹åˆ—å·
+	 * @param filepath //ÎÄ¼şÂ·¾¶
+	 * @param filename //ÎÄ¼şÃû
+	 * @param startrow //¿ªÊ¼ĞĞºÅ
+	 * @param startcol //¿ªÊ¼ÁĞºÅ
 	 * @param sheetnum //sheet
 	 * @return list
 	 */
@@ -33,21 +33,21 @@ public class ObjectExcelRead {
 			File target = new File(filepath, filename);
 			FileInputStream fi = new FileInputStream(target);
 			HSSFWorkbook wb = new HSSFWorkbook(fi);
-			HSSFSheet sheet = wb.getSheetAt(sheetnum); 					//sheet ä»0å¼€å§‹
-			int rowNum = sheet.getLastRowNum() + 1; 					//å–å¾—æœ€åä¸€è¡Œçš„è¡Œå·
+			HSSFSheet sheet = wb.getSheetAt(sheetnum); 					//sheet ´Ó0¿ªÊ¼
+			int rowNum = sheet.getLastRowNum() + 1; 					//È¡µÃ×îºóÒ»ĞĞµÄĞĞºÅ
 
-			for (int i = startrow; i < rowNum; i++) {					//è¡Œå¾ªç¯å¼€å§‹
+			for (int i = startrow; i < rowNum; i++) {					//ĞĞÑ­»·¿ªÊ¼
 				
 				PageData varpd = new PageData();
-				HSSFRow row = sheet.getRow(i); 							//è¡Œ
-				int cellNum = row.getLastCellNum(); 					//æ¯è¡Œçš„æœ€åä¸€ä¸ªå•å…ƒæ ¼ä½ç½®
+				HSSFRow row = sheet.getRow(i); 							//ĞĞ
+				int cellNum = row.getLastCellNum(); 					//Ã¿ĞĞµÄ×îºóÒ»¸öµ¥Ôª¸ñÎ»ÖÃ
 
-				for (int j = startcol; j < cellNum; j++) {				//åˆ—å¾ªç¯å¼€å§‹
+				for (int j = startcol; j < cellNum; j++) {				//ÁĞÑ­»·¿ªÊ¼
 					
 					HSSFCell cell = row.getCell(Short.parseShort(j + ""));
 					String cellValue = null;
 					if (null != cell) {
-						switch (cell.getCellType()) { 					// åˆ¤æ–­excelå•å…ƒæ ¼å†…å®¹çš„æ ¼å¼ï¼Œå¹¶å¯¹å…¶è¿›è¡Œè½¬æ¢ï¼Œä»¥ä¾¿æ’å…¥æ•°æ®åº“
+						switch (cell.getCellType()) { 					// ÅĞ¶Ïexcelµ¥Ôª¸ñÄÚÈİµÄ¸ñÊ½£¬²¢¶ÔÆä½øĞĞ×ª»»£¬ÒÔ±ã²åÈëÊı¾İ¿â
 						case 0:
 							cellValue = String.valueOf((int) cell.getNumericCellValue());
 							break;

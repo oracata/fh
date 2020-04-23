@@ -27,7 +27,7 @@ public class MenuService{
 		
 	}
 
-	//å–æœ€å¤§id
+	//È¡×î´óid
 	public PageData findMaxId(PageData pd) throws Exception {
 		return (PageData) dao.findForObject("MenuMapper.findMaxId", pd);
 		
@@ -67,20 +67,20 @@ public class MenuService{
 	}
 	
 	/**
-	 * ç¼–è¾‘
+	 * ±à¼­
 	 */
 	public PageData edit(PageData pd) throws Exception {
 		return (PageData)dao.findForObject("MenuMapper.updateMenu", pd);
 	}
 	/**
-	 * ä¿å­˜èœå•å›¾æ ‡ (é¡¶éƒ¨èœå•)
+	 * ±£´æ²Ëµ¥Í¼±ê (¶¥²¿²Ëµ¥)
 	 */
 	public PageData editicon(PageData pd) throws Exception {
 		return (PageData)dao.findForObject("MenuMapper.editicon", pd);
 	}
 	
 	/**
-	 * æ›´æ–°å­èœå•ç±»å‹èœå•
+	 * ¸üĞÂ×Ó²Ëµ¥ÀàĞÍ²Ëµ¥
 	 */
 	public PageData editType(PageData pd) throws Exception {
 		return (PageData)dao.findForObject("MenuMapper.editType", pd);

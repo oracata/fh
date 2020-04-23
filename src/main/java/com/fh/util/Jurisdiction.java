@@ -10,48 +10,48 @@ import org.apache.shiro.subject.Subject;
 import com.fh.entity.system.Menu;
 
 /**
- * æƒé™å¤„ç†
+ * È¨ÏŞ´¦Àí
  * @author:fh
 */
 public class Jurisdiction {
 
 	/**
-	 * è®¿é—®æƒé™åŠåˆå§‹åŒ–æŒ‰é’®æƒé™(æ§åˆ¶æŒ‰é’®çš„æ˜¾ç¤º)
-	 * @param menuUrl  èœå•è·¯å¾„
+	 * ·ÃÎÊÈ¨ÏŞ¼°³õÊ¼»¯°´Å¥È¨ÏŞ(¿ØÖÆ°´Å¥µÄÏÔÊ¾)
+	 * @param menuUrl  ²Ëµ¥Â·¾¶
 	 * @return
 	 */
 	public static boolean hasJurisdiction(String menuUrl){
-		//åˆ¤æ–­æ˜¯å¦æ‹¥æœ‰å½“å‰ç‚¹å‡»èœå•çš„æƒé™ï¼ˆå†…éƒ¨è¿‡æ»¤,é˜²æ­¢é€šè¿‡urlè¿›å…¥è·³è¿‡èœå•æƒé™ï¼‰
+		//ÅĞ¶ÏÊÇ·ñÓµÓĞµ±Ç°µã»÷²Ëµ¥µÄÈ¨ÏŞ£¨ÄÚ²¿¹ıÂË,·ÀÖ¹Í¨¹ıurl½øÈëÌø¹ı²Ëµ¥È¨ÏŞ£©
 		/**
-		 * æ ¹æ®ç‚¹å‡»çš„èœå•çš„xxx.doå»èœå•ä¸­çš„URLå»åŒ¹é…ï¼Œå½“åŒ¹é…åˆ°äº†æ­¤èœå•ï¼Œåˆ¤æ–­æ˜¯å¦æœ‰æ­¤èœå•çš„æƒé™ï¼Œæ²¡æœ‰çš„è¯è·³è½¬åˆ°404é¡µé¢
-		 * æ ¹æ®æŒ‰é’®æƒé™ï¼ŒæˆæƒæŒ‰é’®(å½“å‰ç‚¹çš„èœå•å’Œè§’è‰²ä¸­å„æŒ‰é’®çš„æƒé™åŒ¹å¯¹)
+		 * ¸ù¾İµã»÷µÄ²Ëµ¥µÄxxx.doÈ¥²Ëµ¥ÖĞµÄURLÈ¥Æ¥Åä£¬µ±Æ¥Åäµ½ÁË´Ë²Ëµ¥£¬ÅĞ¶ÏÊÇ·ñÓĞ´Ë²Ëµ¥µÄÈ¨ÏŞ£¬Ã»ÓĞµÄ»°Ìø×ªµ½404Ò³Ãæ
+		 * ¸ù¾İ°´Å¥È¨ÏŞ£¬ÊÚÈ¨°´Å¥(µ±Ç°µãµÄ²Ëµ¥ºÍ½ÇÉ«ÖĞ¸÷°´Å¥µÄÈ¨ÏŞÆ¥¶Ô)
 		 */
-		//shiroç®¡ç†çš„session
+		//shiro¹ÜÀíµÄsession
 		Subject currentUser = SecurityUtils.getSubject();  
 		Session session = currentUser.getSession();
 		Boolean b = true;
-		List<Menu> menuList = (List)session.getAttribute(Const.SESSION_allmenuList); //è·å–èœå•åˆ—è¡¨
+		List<Menu> menuList = (List)session.getAttribute(Const.SESSION_allmenuList); //»ñÈ¡²Ëµ¥ÁĞ±í
 		
 		for(int i=0;i<menuList.size();i++){
 			for(int j=0;j<menuList.get(i).getSubMenu().size();j++){
 				if(menuList.get(i).getSubMenu().get(j).getMENU_URL().split(".do")[0].equals(menuUrl.split(".do")[0])){
-					if(!menuList.get(i).getSubMenu().get(j).isHasMenu()){				//åˆ¤æ–­æœ‰æ— æ­¤èœå•æƒé™
+					if(!menuList.get(i).getSubMenu().get(j).isHasMenu()){				//ÅĞ¶ÏÓĞÎŞ´Ë²Ëµ¥È¨ÏŞ
 						return false;
-					}else{																//æŒ‰é’®åˆ¤æ–­
-						Map<String, String> map = (Map<String, String>)session.getAttribute(Const.SESSION_QX);//æŒ‰é’®æƒé™
+					}else{																//°´Å¥ÅĞ¶Ï
+						Map<String, String> map = (Map<String, String>)session.getAttribute(Const.SESSION_QX);//°´Å¥È¨ÏŞ
 						map.remove("add");
 						map.remove("del");
 						map.remove("edit");
 						map.remove("cha");
 						String MENU_ID =  menuList.get(i).getSubMenu().get(j).getMENU_ID();
-						String USERNAME = session.getAttribute(Const.SESSION_USERNAME).toString();	//è·å–å½“å‰ç™»å½•è€…loginname
+						String USERNAME = session.getAttribute(Const.SESSION_USERNAME).toString();	//»ñÈ¡µ±Ç°µÇÂ¼Õßloginname
 						Boolean isAdmin = "admin".equals(USERNAME);
 						map.put("add", (RightsHelper.testRights(map.get("adds"), MENU_ID)) || isAdmin?"1":"0");
 						map.put("del", RightsHelper.testRights(map.get("dels"), MENU_ID) || isAdmin?"1":"0");
 						map.put("edit", RightsHelper.testRights(map.get("edits"), MENU_ID) || isAdmin?"1":"0");
 						map.put("cha", RightsHelper.testRights(map.get("chas"), MENU_ID) || isAdmin?"1":"0");
 						session.removeAttribute(Const.SESSION_QX);
-						session.setAttribute(Const.SESSION_QX, map);	//é‡æ–°åˆ†é…æŒ‰é’®æƒé™
+						session.setAttribute(Const.SESSION_QX, map);	//ÖØĞÂ·ÖÅä°´Å¥È¨ÏŞ
 					}
 				}
 			}
@@ -60,32 +60,32 @@ public class Jurisdiction {
 	}
 	
 	/**
-	 * æŒ‰é’®æƒé™(æ–¹æ³•ä¸­æ ¡éªŒ)
-	 * @param menuUrl  èœå•è·¯å¾„
-	 * @param type  ç±»å‹(addã€delã€editã€cha)
+	 * °´Å¥È¨ÏŞ(·½·¨ÖĞĞ£Ñé)
+	 * @param menuUrl  ²Ëµ¥Â·¾¶
+	 * @param type  ÀàĞÍ(add¡¢del¡¢edit¡¢cha)
 	 * @return
 	 */
 	public static boolean buttonJurisdiction(String menuUrl, String type){
-		//åˆ¤æ–­æ˜¯å¦æ‹¥æœ‰å½“å‰ç‚¹å‡»èœå•çš„æƒé™ï¼ˆå†…éƒ¨è¿‡æ»¤,é˜²æ­¢é€šè¿‡urlè¿›å…¥è·³è¿‡èœå•æƒé™ï¼‰
+		//ÅĞ¶ÏÊÇ·ñÓµÓĞµ±Ç°µã»÷²Ëµ¥µÄÈ¨ÏŞ£¨ÄÚ²¿¹ıÂË,·ÀÖ¹Í¨¹ıurl½øÈëÌø¹ı²Ëµ¥È¨ÏŞ£©
 		/**
-		 * æ ¹æ®ç‚¹å‡»çš„èœå•çš„xxx.doå»èœå•ä¸­çš„URLå»åŒ¹é…ï¼Œå½“åŒ¹é…åˆ°äº†æ­¤èœå•ï¼Œåˆ¤æ–­æ˜¯å¦æœ‰æ­¤èœå•çš„æƒé™ï¼Œæ²¡æœ‰çš„è¯è·³è½¬åˆ°404é¡µé¢
-		 * æ ¹æ®æŒ‰é’®æƒé™ï¼ŒæˆæƒæŒ‰é’®(å½“å‰ç‚¹çš„èœå•å’Œè§’è‰²ä¸­å„æŒ‰é’®çš„æƒé™åŒ¹å¯¹)
+		 * ¸ù¾İµã»÷µÄ²Ëµ¥µÄxxx.doÈ¥²Ëµ¥ÖĞµÄURLÈ¥Æ¥Åä£¬µ±Æ¥Åäµ½ÁË´Ë²Ëµ¥£¬ÅĞ¶ÏÊÇ·ñÓĞ´Ë²Ëµ¥µÄÈ¨ÏŞ£¬Ã»ÓĞµÄ»°Ìø×ªµ½404Ò³Ãæ
+		 * ¸ù¾İ°´Å¥È¨ÏŞ£¬ÊÚÈ¨°´Å¥(µ±Ç°µãµÄ²Ëµ¥ºÍ½ÇÉ«ÖĞ¸÷°´Å¥µÄÈ¨ÏŞÆ¥¶Ô)
 		 */
-		//shiroç®¡ç†çš„session
+		//shiro¹ÜÀíµÄsession
 		Subject currentUser = SecurityUtils.getSubject();  
 		Session session = currentUser.getSession();
 		Boolean b = true;
-		List<Menu> menuList = (List)session.getAttribute(Const.SESSION_allmenuList); //è·å–èœå•åˆ—è¡¨
+		List<Menu> menuList = (List)session.getAttribute(Const.SESSION_allmenuList); //»ñÈ¡²Ëµ¥ÁĞ±í
 		
 		for(int i=0;i<menuList.size();i++){
 			for(int j=0;j<menuList.get(i).getSubMenu().size();j++){
 				if(menuList.get(i).getSubMenu().get(j).getMENU_URL().split(".do")[0].equals(menuUrl.split(".do")[0])){
-					if(!menuList.get(i).getSubMenu().get(j).isHasMenu()){				//åˆ¤æ–­æœ‰æ— æ­¤èœå•æƒé™
+					if(!menuList.get(i).getSubMenu().get(j).isHasMenu()){				//ÅĞ¶ÏÓĞÎŞ´Ë²Ëµ¥È¨ÏŞ
 						return false;
-					}else{																//æŒ‰é’®åˆ¤æ–­
-						Map<String, String> map = (Map<String, String>)session.getAttribute(Const.SESSION_QX);//æŒ‰é’®æƒé™
+					}else{																//°´Å¥ÅĞ¶Ï
+						Map<String, String> map = (Map<String, String>)session.getAttribute(Const.SESSION_QX);//°´Å¥È¨ÏŞ
 						String MENU_ID =  menuList.get(i).getSubMenu().get(j).getMENU_ID();
-						String USERNAME = session.getAttribute(Const.SESSION_USERNAME).toString();	//è·å–å½“å‰ç™»å½•è€…loginname
+						String USERNAME = session.getAttribute(Const.SESSION_USERNAME).toString();	//»ñÈ¡µ±Ç°µÇÂ¼Õßloginname
 						Boolean isAdmin = "admin".equals(USERNAME);
 						if("add".equals(type)){
 							return ((RightsHelper.testRights(map.get("adds"), MENU_ID)) || isAdmin);

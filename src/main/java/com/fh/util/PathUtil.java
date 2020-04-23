@@ -8,7 +8,7 @@ import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
 /**
- * è·¯å¾„å·¥å…·ç±»
+ * Â·¾¶¹¤¾ßÀà
  * 
  * @author
  * 
@@ -16,12 +16,12 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 public class PathUtil {
 
 	/**
-	 * å›¾ç‰‡è®¿é—®è·¯å¾„
+	 * Í¼Æ¬·ÃÎÊÂ·¾¶
 	 * 
 	 * @param pathType
-	 *            å›¾ç‰‡ç±»å‹ visit-è®¿é—®ï¼›save-ä¿å­˜
+	 *            Í¼Æ¬ÀàĞÍ visit-·ÃÎÊ£»save-±£´æ
 	 * @param pathCategory
-	 *            å›¾ç‰‡ç±»åˆ«ï¼Œå¦‚ï¼šè¯é¢˜å›¾ç‰‡-topicã€è¯é¢˜å›å¤å›¾ç‰‡-replyã€å•†å®¶å›¾ç‰‡
+	 *            Í¼Æ¬Àà±ğ£¬Èç£º»°ÌâÍ¼Æ¬-topic¡¢»°Ìâ»Ø¸´Í¼Æ¬-reply¡¢ÉÌ¼ÒÍ¼Æ¬
 	 * @return
 	 */
 	public static String getPicturePath(String pathType, String pathCategory) {
@@ -56,7 +56,7 @@ public class PathUtil {
 	}
 	
 	/*
-	 * è·å–classpath1
+	 * »ñÈ¡classpath1
 	 */
 	public static String getClasspath(){
 		String path = (String.valueOf(Thread.currentThread().getContextClassLoader().getResource(""))+"../../").replaceAll("file:/", "").replaceAll("%20", " ").trim();	
@@ -67,7 +67,7 @@ public class PathUtil {
 	}
 	
 	/*
-	 * è·å–classpath2
+	 * »ñÈ¡classpath2
 	 */
 	public static String getClassResources(){
 		String path =  (String.valueOf(Thread.currentThread().getContextClassLoader().getResource(""))).replaceAll("file:/", "").replaceAll("%20", " ").trim();	
@@ -91,7 +91,7 @@ public class PathUtil {
 
 		strBuf.append(request.getContextPath() + "/");
 
-		strResult = strBuf.toString();// +"ss/";//åŠ å…¥é¡¹ç›®çš„åç§°
+		strResult = strBuf.toString();// +"ss/";//¼ÓÈëÏîÄ¿µÄÃû³Æ
 
 		return strResult;
 	}
