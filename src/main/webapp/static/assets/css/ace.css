@@ -3526,7 +3526,7 @@ body.mob-safari .sidebar.sidebar-fixed {
   }
   .main-container .menu-toggler > .toggler-text:after {
     display: block;
-    content: "MENU";
+    content: "";
     color: #ffffff;
     position: absolute;
     left: -8px;
