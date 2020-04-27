@@ -19,7 +19,7 @@ public class ReportActiveController  extends BaseController {
     public ModelAndView selectTest1(PrintWriter out) throws Exception{
 
         ModelAndView mv = this.getModelAndView();
-        mv.setViewName("report/test1");
+        mv.setViewName("report/test4");
         return mv;
     }
 

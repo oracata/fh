@@ -8,6 +8,7 @@
 			+ request.getServerName() + ":" + request.getServerPort()
 			+ path + "/";
 %>
+<!-- jsp文件头和头部 -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,263 +20,202 @@
 </head>
 <body>
 
+
 	<div class="container-fluid" id="main-container">
-		
 
-			<div id="page-content" class="clearfix">
 
-				<div class="page-header position-relative">
-					<h1>
-						首页
-					</h1>
-				</div>
-				<!--/page-header-->
+		<div id="page-content" class="clearfix">
+
+
+			<div class="row-fluid">
 
 				<div class="row-fluid">
 
 
+
+
+						<div class="tabbable" id="userTab">
+							<ul class="nav nav-tabs">
+								<li class="active">
+									<a data-toggle="tab" href="#userchartTab">
+										用户分布
+									</a>
+								</li>
+								<li>
+									<a data-toggle="tab" href="#roleUserTab">
+										用户角色分布
+									</a>
+								</li>
+								<li>
+									<a data-toggle="tab" href="#listUserTab">
+										用户列表
+									</a>
+								</li>
+							</ul>
+							<div class="tab-content">
+								<div id="userchartTab" class="tab-pane fade in active">
+									lalala
+								</div>
+
+								<div id="roleUserTab" class="tab-pane fade" >
+									aaaaaa
+								</div>
+
+								<div id="listUserTab" class="tab-pane fade" >
+									lllllllllllllll
+								</div>
+
+
+
+							</div>
+						</div>
+
+
 				</div>
-				<!--/row-->
 
 
 
 
+			</div><!--/.fluid-container#main-container-->
+
+
+			<!-- 引入 -->
+			<script type="text/javascript">window.jQuery || document.write("<script src='static/js/jquery-1.9.1.min.js'>\x3C/script>");</script>
+			<script src="static/js/bootstrap.min.js"></script>
+			<script src="static/js/ace-elements.min.js"></script>
+			<script src="static/js/ace.min.js"></script>
+			<!-- 引入 -->
 
 
 
+			<script type="text/javascript">
 
+				$(top.hangge());
 
+				//检索
+				function search(){
+					top.jzts();
+					$("#Form").submit();
+				}
 
-		</div>
-		<!-- #main-content -->
-	</div>
-	<!--/.fluid-container#main-container-->
-	<a href="#" id="btn-scroll-up" class="btn btn-small btn-inverse"> <i
-		class="icon-double-angle-up icon-only"></i>
-	</a>
-	<!-- basic scripts -->
-	<script src="static/1.9.1/jquery.min.js"></script>
-	<script type="text/javascript">
-		window.jQuery
-				|| document
-						.write("<script src='static/js/jquery-1.9.1.min.js'>\x3C/script>");
-	</script>
+				//新增
+				function add(){
+					top.jzts();
+					var diag = new top.Dialog();
+					diag.Drag=true;
+					diag.Title ="新增";
+					diag.URL = '<%=basePath%>pictures/goAdd.do';
+					diag.Width = 800;
+					diag.Height = 490;
+					diag.CancelEvent = function(){ //关闭事件
+						if('${page.currentPage}' == '0'){
+							top.jzts();
+							setTimeout("self.location=self.location",100);
+						}else{
+							nextPage(${page.currentPage});
+						}
+						diag.close();
+					};
+					diag.show();
+				}
 
-	<script src="static/js/bootstrap.min.js"></script>
-	<!-- page specific plugin scripts -->
+				//删除
+				function del(Id,PATH){
 
-	<!--[if lt IE 9]>
-		<script type="text/javascript" src="static/js/excanvas.min.js"></script>
-		<![endif]-->
-	<script type="text/javascript" src="static/js/jquery-ui-1.10.2.custom.min.js"></script>
-	<script type="text/javascript" src="static/js/jquery.ui.touch-punch.min.js"></script>
-	<script type="text/javascript" src="static/js/jquery.slimscroll.min.js"></script>
-	<script type="text/javascript" src="static/js/jquery.easy-pie-chart.min.js"></script>
-	<script type="text/javascript" src="static/js/jquery.sparkline.min.js"></script>
-	<script type="text/javascript" src="static/js/jquery.flot.min.js"></script>
-	<script type="text/javascript" src="static/js/jquery.flot.pie.min.js"></script>
-	<script type="text/javascript" src="static/js/jquery.flot.resize.min.js"></script>
-	<!-- ace scripts -->
-	<script src="static/js/ace-elements.min.js"></script>
-	<script src="static/js/ace.min.js"></script>
-	<!-- inline scripts related to this page -->
-
-
-	<script type="text/javascript">
-
-		$(top.hangge());
-	
-		$(function() {
-			$('.dialogs,.comments').slimScroll({
-				height : '300px'
-			});
-
-			$('#tasks').sortable();
-			$('#tasks').disableSelection();
-			$('#tasks input:checkbox').removeAttr('checked').on('click',
-					function() {
-						if (this.checked)
-							$(this).closest('li').addClass('selected');
-						else
-							$(this).closest('li').removeClass('selected');
-					});
-			var oldie = $.browser.msie && $.browser.version < 9;
-			$('.easy-pie-chart.percentage')
-					.each(
-							function() {
-								var $box = $(this).closest('.infobox');
-								var barColor = $(this).data('color')
-										|| (!$box.hasClass('infobox-dark') ? $box
-												.css('color')
-												: 'rgba(255,255,255,0.95)');
-								var trackColor = barColor == 'rgba(255,255,255,0.95)' ? 'rgba(255,255,255,0.25)'
-										: '#E2E2E2';
-								var size = parseInt($(this).data('size')) || 50;
-								$(this).easyPieChart({
-									barColor : barColor,
-									trackColor : trackColor,
-									scaleColor : false,
-									lineCap : 'butt',
-									lineWidth : parseInt(size / 10),
-									animate : oldie ? false : 1000,
-									size : size
-								});
-							})
-			$('.sparkline').each(
-					function() {
-						var $box = $(this).closest('.infobox');
-						var barColor = !$box.hasClass('infobox-dark') ? $box
-								.css('color') : '#FFF';
-						$(this).sparkline('html', {
-							tagValuesAttribute : 'data-values',
-							type : 'bar',
-							barColor : barColor,
-							chartRangeMin : $(this).data('min') || 0
+					if(confirm("确定要删除?")){
+						top.jzts();
+						var url = "<%=basePath%>pictures/delete.do?PICTURES_ID="+Id+"&PATH="+PATH+"&tm="+new Date().getTime();
+						$.get(url,function(data){
+							nextPage(${page.currentPage});
 						});
-					});
-
-			var data = [ {
-				label : "social networks",
-				data : 38.7,
-				color : "#68BC31"
-			}, {
-				label : "search engines",
-				data : 24.5,
-				color : "#2091CF"
-			}, {
-				label : "ad campaings",
-				data : 8.2,
-				color : "#AF4E96"
-			}, {
-				label : "direct traffic",
-				data : 18.6,
-				color : "#DA5430"
-			}, {
-				label : "other",
-				data : 10,
-				color : "#FEE074"
-			} ];
-			var placeholder = $('#piechart-placeholder').css({
-				'width' : '90%',
-				'min-height' : '150px'
-			});
-			$.plot(placeholder, data, {
-
-				series : {
-					pie : {
-						show : true,
-						tilt : 0.8,
-						highlight : {
-							opacity : 0.25
-						},
-						stroke : {
-							color : '#fff',
-							width : 2
-						},
-						startAngle : 2
-
-					}
-				},
-				legend : {
-					show : true,
-					position : "ne",
-					labelBoxBorderColor : null,
-					margin : [ -30, 15 ]
-				},
-				grid : {
-					hoverable : true,
-					clickable : true
-				},
-				tooltip : true, //activate tooltip
-				tooltipOpts : {
-					content : "%s : %y.1",
-					shifts : {
-						x : -30,
-						y : -50
 					}
 				}
 
-			});
+				//修改
+				function edit(Id){
+					top.jzts();
+					var diag = new top.Dialog();
+					diag.Drag=true;
+					diag.Title ="编辑";
+					diag.URL = '<%=basePath%>pictures/goEdit.do?PICTURES_ID='+Id;
+					diag.Width = 600;
+					diag.Height = 465;
+					diag.CancelEvent = function(){ //关闭事件
+						if(diag.innerFrame.contentWindow.document.getElementById('zhongxin').style.display == 'none'){
+							nextPage(${page.currentPage});
+						}
+						diag.close();
+					};
+					diag.show();
+				}
+			</script>
 
-			var $tooltip = $(
-					"<div class='tooltip top in' style='display:none;'><div class='tooltip-inner'></div></div>")
-					.appendTo('body');
-			placeholder.data('tooltip', $tooltip);
-			var previousPoint = null;
-			placeholder.on('plothover', function(event, pos, item) {
-				if (item) {
-					if (previousPoint != item.seriesIndex) {
-						previousPoint = item.seriesIndex;
-						var tip = item.series['label'] + " : "
-								+ item.series['percent'] + '%';
-						$(this).data('tooltip').show().children(0).text(tip);
+			<script type="text/javascript">
+
+				//全选 （是/否）
+				function selectAll(){
+					var checklist = document.getElementsByName ("ids");
+					if(document.getElementById("zcheckbox").checked){
+						for(var i=0;i<checklist.length;i++){
+							checklist[i].checked = 1;
+						}
+					}else{
+						for(var j=0;j<checklist.length;j++){
+							checklist[j].checked = 0;
+						}
 					}
-					$(this).data('tooltip').css({
-						top : pos.pageY + 10,
-						left : pos.pageX + 10
-					});
-				} else {
-					$(this).data('tooltip').hide();
-					previousPoint = null;
 				}
 
-			});
-			var d1 = [];
-			for (var i = 0; i < Math.PI * 2; i += 0.5) {
-				d1.push([ i, Math.sin(i) ]);
-			}
-			var d2 = [];
-			for (var i = 0; i < Math.PI * 2; i += 0.5) {
-				d2.push([ i, Math.cos(i) ]);
-			}
-			var d3 = [];
-			for (var i = 0; i < Math.PI * 2; i += 0.2) {
-				d3.push([ i, Math.tan(i) ]);
-			}
 
-			var sales_charts = $('#sales-charts').css({
-				'width' : '100%',
-				'height' : '220px'
-			});
-			$.plot("#sales-charts", [ {
-				label : "Domains",
-				data : d1
-			}, {
-				label : "Hosting",
-				data : d2
-			}, {
-				label : "Services",
-				data : d3
-			} ], {
-				hoverable : true,
-				shadowSize : 0,
-				series : {
-					lines : {
-						show : true
-					},
-					points : {
-						show : true
+
+				//批量操作
+				function makeAll(msg){
+
+					if(confirm(msg)){
+
+						var str = '';
+						for(var i=0;i < document.getElementsByName('ids').length;i++)
+						{
+							if(document.getElementsByName('ids')[i].checked){
+								if(str=='') str += document.getElementsByName('ids')[i].value;
+								else str += ',' + document.getElementsByName('ids')[i].value;
+							}
+						}
+						if(str==''){
+							alert("您没有选择任何内容!");
+							return;
+						}else{
+							if(msg == '确定要删除选中的数据吗?'){
+								top.jzts();
+								$.ajax({
+									type: "POST",
+									url: '<%=basePath%>pictures/deleteAll.do?tm='+new Date().getTime(),
+									data: {DATA_IDS:str},
+									dataType:'json',
+									//beforeSend: validateData,
+									cache: false,
+									success: function(data){
+										$.each(data.list, function(i, list){
+											nextPage(${page.currentPage});
+										});
+									}
+								});
+							}
+						}
 					}
-				},
-				xaxis : {
-					tickLength : 0
-				},
-				yaxis : {
-					ticks : 10,
-					min : -2,
-					max : 2,
-					tickDecimals : 3
-				},
-				grid : {
-					backgroundColor : {
-						colors : [ "#fff", "#fff" ]
-					},
-					borderWidth : 1,
-					borderColor : '#555'
 				}
-			});
-			$('[data-rel="tooltip"]').tooltip();
-		})
-	</script>
+
+				//导出excel
+				function toExcel(){
+					window.location.href='<%=basePath%>pictures/excel.do';
+				}
+			</script>
+			<style type="text/css">
+				li {list-style-type:none;}
+			</style>
+			<ul class="navigationTabs">
+				<li><a></a></li>
+				<li></li>
+			</ul>
 </body>
 </html>

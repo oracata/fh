@@ -6,14 +6,14 @@
 	
 	<!-- 更新登录时间 -->
 	<update id="updateLastLogin" parameterType="pd">
-		update sys_app_user set
+		update rpt_sys_app_user set
 		LAST_LOGIN = #{LAST_LOGIN} 
 		where USER_ID = #{USER_ID}
 	</update>
 	
 	<!-- 判断用户名和密码 -->
 	<select id="getUserInfo" parameterType="pd" resultType="pd">
-		select * from sys_app_user
+		select * from rpt_sys_app_user
 		where 1=1
 		<if test="USERNAME != null and PASSWORD != null">
 	  	and	
@@ -32,7 +32,7 @@
 	
 	<!-- 存入IP -->
 	<update id="saveIP" parameterType="pd">
-		update sys_app_user
+		update rpt_sys_app_user
 			set 
 				IP = #{IP}
 			where 
@@ -41,7 +41,7 @@
 	
 	<!-- 修改 -->
 	<update id="editU" parameterType="pd">
-		update  sys_app_user
+		update  rpt_sys_app_user
 			set USERNAME				= #{USERNAME},
 				NAME					= #{NAME},
 				ROLE_ID 				= #{ROLE_ID},
@@ -82,7 +82,7 @@
 			EMAIL,
 			NUMBER
 		from 
-			sys_app_user
+			rpt_sys_app_user
 		where 
 			USER_ID = #{USER_ID}
 	</select>
@@ -108,7 +108,7 @@
 			EMAIL,
 			NUMBER
 		from 
-			sys_app_user
+			rpt_sys_app_user
 		where 
 			EMAIL = #{EMAIL}
 		<if test="USERNAME != null and USERNAME != ''">
@@ -137,7 +137,7 @@
 			EMAIL,
 			NUMBER
 		from 
-			sys_app_user
+			rpt_sys_app_user
 		where 
 			NUMBER = #{NUMBER}
 		<if test="USERNAME != null and USERNAME != ''">
@@ -166,14 +166,14 @@
 			EMAIL,
 			NUMBER
 		from 
-			sys_app_user
+			rpt_sys_app_user
 		where 
 			USERNAME = #{USERNAME}
 	</select>
 	
 	<!-- 新增app用户 -->
 	<insert id="saveU" parameterType="pd">
-		insert into sys_app_user (
+		insert into rpt_sys_app_user (
 			USER_ID,
 			USERNAME,
 			PASSWORD,
@@ -227,18 +227,18 @@
 				u.NUMBER,
 				r.ROLE_ID,
 				r.ROLE_NAME
-		from sys_app_user u, sys_role r
+		from rpt_sys_app_user u, sys_role r
 		where u.ROLE_ID = r.ROLE_ID 
 		and 1 = 1
 		and r.PARENT_ID = '7'
 		
 		<if test="pd.USERNAME != null and pd.USERNAME != ''"><!-- 用户名检索 -->
 			and (
-				u.USERNAME LIKE CONCAT(CONCAT('%', #{pd.USERNAME}),'%')
+				u.USERNAME LIKE '%'+#{pd.USERNAME}+'%'
 				or
-				u.EMAIL LIKE CONCAT(CONCAT('%', #{pd.USERNAME}),'%')
+				u.EMAIL LIKE '%'+#{pd.USERNAME}+'%'
 				or
-				u.NUMBER LIKE CONCAT(CONCAT('%', #{pd.USERNAME}),'%')
+				u.NUMBER LIKE '%'+#{pd.USERNAME}+'%'
 				)
 		</if>
 		<if test="pd.ROLE_ID != null and pd.ROLE_ID != ''"><!-- 角色检索 -->
@@ -272,18 +272,18 @@
 				u.NUMBER,
 				r.ROLE_ID,
 				r.ROLE_NAME
-		from sys_app_user u, sys_role r
+		from rpt_sys_app_user u, sys_role r
 		where u.ROLE_ID = r.ROLE_ID 
 		and 1 = 1
 		and r.PARENT_ID = '7'
 		
 		<if test="USERNAME != null and USERNAME != ''"><!-- 用户名检索 -->
 			and (
-				u.USERNAME LIKE CONCAT(CONCAT('%', #{USERNAME}),'%')
+				u.USERNAME LIKE '%'+#{USERNAME}+'%'
+			or
+				u.EMAIL LIKE '%'+#{USERNAME}+'%'
 				or
-				u.EMAIL LIKE CONCAT(CONCAT('%', #{USERNAME}),'%')
-				or
-				u.NUMBER LIKE CONCAT(CONCAT('%', #{USERNAME}),'%')
+				u.NUMBER LIKE '%'+#{USERNAME}+'%'
 				)
 		</if>
 		<if test="ROLE_ID != null and ROLE_ID != ''"><!-- 角色检索 -->
@@ -302,14 +302,14 @@
 	
 	<!-- 删除用户 -->
 	<delete id="deleteU" parameterType="pd">
-		delete from sys_app_user
+		delete from rpt_sys_app_user
 		where 
 			USER_ID = #{USER_ID}
 	</delete>
 	
 	<!-- 批量删除用户 -->
 	<delete id="deleteAllU" parameterType="String">
-		delete from sys_app_user
+		delete from rpt_sys_app_user
 		where 
 			USER_ID in
   			 <foreach item="item" index="index" collection="array" open="(" separator="," close=")">

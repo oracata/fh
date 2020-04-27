@@ -158,10 +158,13 @@ public class PagePlugin implements Interceptor {
 	 */
 	private String generatePageSql(String sql,Page page){
 		if(page!=null && Tools.notEmpty(dialect)){
+			System.out.println("dialect******************:"+dialect);
 			StringBuffer pageSql = new StringBuffer();
 			if("mysql".equals(dialect)){
 				pageSql.append(sql);
-				pageSql.append(" limit "+page.getCurrentResult()+","+page.getShowCount());
+
+			 pageSql.append(" limit "+page.getCurrentResult()+","+page.getShowCount());
+
 			}else if("oracle".equals(dialect)){
 				pageSql.append("select * from (select tmp_tb.*,ROWNUM row_id from (");
 				pageSql.append(sql);
@@ -170,7 +173,12 @@ public class PagePlugin implements Interceptor {
 				pageSql.append(page.getCurrentResult()+page.getShowCount());
 				pageSql.append(") where row_id>");
 				pageSql.append(page.getCurrentResult());
+			}else if("sqlserver".equals(dialect)){
+			//	pageSql.append("select * from (select tmp_tb.*,ROW_NUMBER() OVER() AS RowNumber from (");
+				pageSql.append(sql);
+				//pageSql.append(" ) tmp_tb ) a where   RowNumber BETWEEN "+page.getCurrentResult()+" and "+page.getShowCount());
 			}
+
 			return pageSql.toString();
 		}else{
 			return sql;

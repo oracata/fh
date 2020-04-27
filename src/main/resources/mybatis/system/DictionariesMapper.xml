@@ -6,7 +6,7 @@
 	
 	<!-- 修改 -->
 	<update id="edit" parameterType="pd">
-		update  sys_dictionaries
+		update  rpt_sys_dictionaries
 			set NAME    = #{NAME},
 				ORDY_BY = #{ORDY_BY},
 				BIANMA  = #{BIANMA},
@@ -26,14 +26,14 @@
 			JB,
 			P_BM
 		from 
-			sys_dictionaries
+			rpt_sys_dictionaries
 		where 
 			ZD_ID = #{ZD_ID}
 	</select>
 	
 	<!-- 新增 -->
 	<insert id="save" parameterType="pd">
-		insert into sys_dictionaries (
+		insert into rpt_sys_dictionaries (
 			ZD_ID,
 			NAME,
 			BIANMA,
@@ -62,9 +62,9 @@
 				z1.JB,
 				z1.P_BM,
 				z2.NAME PNAME
-		from sys_dictionaries z1
+		from rpt_sys_dictionaries z1
 		left join
-			sys_dictionaries z2
+			rpt_sys_dictionaries z2
 		on  z1.PARENT_ID = z2.ZD_ID 
 		where 
 		    z1.PARENT_ID = #{pd.PARENT_ID}
@@ -79,7 +79,7 @@
 		select 
 			count(ZD_ID) ZS
 		from 
-			sys_dictionaries
+			rpt_sys_dictionaries
 		where 
 			PARENT_ID = #{ZD_ID}
 	</select>
@@ -89,7 +89,7 @@
 		select 
 			ZD_ID
 		from 
-			sys_dictionaries
+			rpt_sys_dictionaries
 		where 
 			BIANMA = #{BIANMA}
 		<if test="ZD_ID != null and ZD_ID != ''">
@@ -99,7 +99,7 @@
 	
 	<!-- 删除用户 -->
 	<delete id="delete" parameterType="pd">
-		delete from sys_dictionaries
+		delete from rpt_sys_dictionaries
 		where 
 			ZD_ID = #{ZD_ID}
 	</delete>
