@@ -54,7 +54,7 @@
 							</ul>
 							<div class="tab-content">
 								<div id="userchartTab" class="tab-pane fade in active">
-									lalala
+									xxxxlalala
 								</div>
 
 								<div id="roleUserTab" class="tab-pane fade" >

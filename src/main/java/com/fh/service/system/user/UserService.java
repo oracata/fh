@@ -4,6 +4,8 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import com.fh.util.DataGridView;
+import com.github.pagehelper.PageHelper;
 import org.springframework.stereotype.Service;
 
 import com.fh.dao.DaoSupport;
@@ -122,6 +124,18 @@ public class UserService {
 	*/
 	public User getUserAndRoleById(String USER_ID) throws Exception {
 		return (User) dao.findForObject("UserMapper.getUserAndRoleById", USER_ID);
+	}
+
+
+
+
+
+	public DataGridView listUser(User user) throws Exception {
+
+		com.github.pagehelper.Page<Object> page= PageHelper.startPage(user.getPage(),user.getLimit());
+		List<User> data= (List<User>) dao.findForList("UserXMapper.listAllUser",user);
+		return new DataGridView(page.getTotal(),data);
+
 	}
 
 	

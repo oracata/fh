@@ -243,7 +243,7 @@
 	</select>
 	
 	<!-- 用户列表(全部) -->
-	<select id="listAllUser" parameterType="pd" resultType="pd" useCache="false">
+	<select id="listAllUser" parameterType="User" resultType="User" useCache="false">
 		select  u.USER_ID,
 				u.USERNAME,
 				u.PASSWORD,

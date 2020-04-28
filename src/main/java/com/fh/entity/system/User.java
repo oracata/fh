@@ -23,7 +23,36 @@ public class User {
 	private String IP;			//用户登录ip地址
 	private String STATUS;		//状态
 	private Role role;			//角色对象
-	private Page page;			//分页对象
+
+	private String lastLoginStart  ;
+
+	public String getLastLoginStart() {
+		return lastLoginStart;
+	}
+
+	public void setLastLoginStart(String lastLoginStart) {
+		this.lastLoginStart = lastLoginStart;
+	}
+
+	public String getLastLoginEnd() {
+		return lastLoginEnd;
+	}
+
+	public void setLastLoginEnd(String lastLoginEnd) {
+		this.lastLoginEnd = lastLoginEnd;
+	}
+
+	private String lastLoginEnd  ;
+
+	public Page getPage_old() {
+		return page_old;
+	}
+
+	public void setPage_old(Page page_old) {
+		this.page_old = page_old;
+	}
+
+	private Page page_old;			//分页对象
 	private String SKIN;		//皮肤
 	
 	public String getSKIN() {
@@ -94,13 +123,26 @@ public class User {
 	public void setRole(Role role) {
 		this.role = role;
 	}
-	public Page getPage() {
-		if(page==null)
-			page = new Page();
+
+
+
+
+	private Integer page=1;
+
+	public Integer getPage() {
 		return page;
 	}
-	public void setPage(Page page) {
+
+	public void setPage(Integer page) {
 		this.page = page;
+	}
+
+	private Integer limit=10;
+	public Integer getLimit() {
+		return limit;
+	}
+	public void setLimit(Integer limit) {
+		this.limit = limit;
 	}
 	
 }

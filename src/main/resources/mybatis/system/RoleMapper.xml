@@ -71,7 +71,7 @@
 	
 	<!-- 通过当前登录用的角色id获取管理权限数据 -->
 	<select id="findGLbyrid"  parameterType="pd" resultType="pd" >
-		SELECT 
+		SELECT top 1
 			b.GL_ID,
 			b.ROLE_ID,
 			b.FX_QX,
@@ -88,12 +88,12 @@
 		and
 			c.ROLE_ID =  '${ROLE_ID}'
 		
-		limit 0,1
+
 	</select>
 	
 	<!-- 通过当前登录用的角色id获取用户权限数据 -->
 	<select id="findYHbyrid"  parameterType="pd" resultType="pd" >
-		SELECT 
+		SELECT  top 1
 			b.U_ID,
 			b.C1,
 			b.C2,
@@ -110,7 +110,7 @@
 			a.ROLE_ID = c.ROLE_ID
 		and
 			c.ROLE_ID =  '${ROLE_ID}'
-		limit 0,1
+
 	</select>
 	
 	<!-- 列出K权限表里的数据 -->

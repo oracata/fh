@@ -3,6 +3,7 @@
 	<meta name="description" content="overview & stats" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<!-- basic styles -->
+
 	<link href="static/css/bootstrap.min.css" rel="stylesheet" />
 	<link href="static/css/bootstrap-responsive.min.css" rel="stylesheet" />
 	<link rel="stylesheet" href="static/css/font-awesome.min.css" />
@@ -20,3 +21,13 @@
 	<script type="text/javascript" src="plugins/attention/zDialog/zDialog.js"></script>
 	<!--引入弹窗组件end-->
 	<script type="text/javascript" src="static/js/jquery.tips.js"></script>
+    <!--
+    <link href="static/bootstrap-table/bootstrap-table.css" rel="stylesheet" />
+    <script type="text/javascript" src="static/js/bootstrap-table/bootstrap-table.js"></script>
+   -->
+    <script type="text/javascript" src="//cdn.bootcss.com/bootstrap-table/1.11.1/bootstrap-table.min.js"></script>
+    <script type="text/javascript" src="//cdn.bootcss.com/bootstrap-table/1.2.0/locale/bootstrap-table-zh-CN.min.js"></script>
+    <script type="text/javascript" src="static/js/bootstrap-table/common.js"></script>
+
+
+
