@@ -144,5 +144,5 @@ public class User {
 	public void setLimit(Integer limit) {
 		this.limit = limit;
 	}
-	
+
 }

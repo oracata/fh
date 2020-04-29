@@ -9,24 +9,24 @@ import lombok.Setter;
 @Data
 public class DataGridView {
 
-    private Integer code=0;
-    private String msg="";
-    private Long count;
-    private Object data;
+    //private Integer code=0;
+   // private String msg="";
+    private Long total;
+    private Object rows;
 
 
     public DataGridView() {
     }
 
 
-    public DataGridView(Object data) {
-        this.data = data;
+    public DataGridView(Object rows) {
+        this.rows = rows;
     }
 
 
-    public DataGridView(Long count, Object data) {
-        this.count = count;
-        this.data = data;
+    public DataGridView(Long total, Object rows) {
+        this.total = total;
+        this.rows = rows;
     }
 }
 

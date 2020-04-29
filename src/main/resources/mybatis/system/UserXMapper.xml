@@ -244,17 +244,22 @@
 	
 	<!-- 用户列表(全部) -->
 	<select id="listAllUser" parameterType="User" resultType="User" useCache="false">
-		select  u.USER_ID,
+		select
+		 <!--
+		 u.USER_ID,
 				u.USERNAME,
 				u.PASSWORD,
 				u.LAST_LOGIN,
-				u.NAME,
+				-->
+				u.NAME
+				<!--
 				u.IP,
 				u.EMAIL,
 				u.NUMBER,
 				u.PHONE,
 				r.ROLE_ID,
 				r.ROLE_NAME
+				-->
 		from rpt_sys_user u, rpt_sys_role r
 		where u.ROLE_ID = r.ROLE_ID 
 		and u.USERNAME != 'admin'

@@ -25,9 +25,14 @@
     <link href="static/bootstrap-table/bootstrap-table.css" rel="stylesheet" />
     <script type="text/javascript" src="static/js/bootstrap-table/bootstrap-table.js"></script>
    -->
-    <script type="text/javascript" src="//cdn.bootcss.com/bootstrap-table/1.11.1/bootstrap-table.min.js"></script>
-    <script type="text/javascript" src="//cdn.bootcss.com/bootstrap-table/1.2.0/locale/bootstrap-table-zh-CN.min.js"></script>
-    <script type="text/javascript" src="static/js/bootstrap-table/common.js"></script>
+	<script type="text/javascript" src="static/bootstrap-table/bootstrap-table.min.js"></script>
+	<script type="text/javascript" src="static/bootstrap-table/locale/bootstrap-table-zh-CN.min.js"></script>
+	<link rel="stylesheet" href="static/bootstrap-table/bootstrap-table.min.css">
+
+
+<!--
+	<script type="text/javascript" src="static/bootstrap-table/jquery.treegrid.extension.js"></script>
+	-->
 
 
 

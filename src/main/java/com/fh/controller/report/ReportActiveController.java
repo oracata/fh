@@ -27,21 +27,40 @@ public class ReportActiveController  extends BaseController {
     @Resource(name="userService")
     private UserService userService;
 
+
+
+    @RequestMapping("/test1")
+    public ModelAndView getKhjTask(){
+
+        ModelAndView mav = new ModelAndView("report/test1");
+
+        return mav;
+    }
+
     @ResponseBody
-    @RequestMapping(value="/test1")
+    @RequestMapping(value="/listtest1")
     public DataGridView selectTest1(User user) throws Exception{
-
-
-
-
-
-
 
    //     mv.addObject(Const.SESSION_QX,this.getHC());	//按钮权限
         return      userService.listUser(user);
 
     }
 
+
+
+
+
+    @RequestMapping(value="/test2")
+    public ModelAndView selectTest2(User user) throws Exception{
+        ModelAndView mv = this.getModelAndView();
+
+
+
+        mv.setViewName("report/test2");
+
+        return mv;
+
+    }
 
     /* ===============================权限================================== */
     public Map<String, String> getHC(){

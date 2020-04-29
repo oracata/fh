@@ -42,7 +42,15 @@
         <scope>provided</scope>
     </dependency>
 
+
+    
+
 </dependencies>
+
+
+    <properties>
+
+    </properties>
 
     <build>
         <!-- package  不能使用了，只能直接用idea的build 编译打包-->
