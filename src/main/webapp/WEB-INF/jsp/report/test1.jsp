@@ -17,7 +17,20 @@
 <!-- jsp文件头和头部 -->
 <%@ include file=".././system/admin/top.jsp"%>
 
+	<link rel="stylesheet" href="static/css/my-responsive.css" />
+
+
+
+
+
+
 </head>
+
+
+
+
+
+
 <body>
 
 
@@ -54,16 +67,20 @@
 							</ul>
 							<div class="tab-content">
 								<div id="userchartTab" class="tab-pane fade in active">
-									<table id="dataGrid">
-									</table>
+
+							         <div id="table-responsive-width"  >
+									     <table   id="dataGrid">
+									     </table>
+								     </div>
+
 								</div>
 
 								<div id="roleUserTab" class="tab-pane fade" >
-									aaaaaa
+								aaaaaaaaaaaa
 								</div>
 
 								<div id="listUserTab" class="tab-pane fade" >
-									lllllllllllllll
+									aaaaaaaaaaa
 								</div>
 
 
@@ -82,14 +99,30 @@
 
 
 			<script type="text/javascript">
-
+				//加载提示隐藏
+				$(top.hangge());
 
 				$(function () {
 					$('#dataGrid').bootstrapTable({
 						columns: [  {
 							field: 'name',
 							title: '姓名',
+						}, {
+							field: 'ip',
+							title: 'ip',
 						}
+							, {
+								field: 'last_LOGIN',
+								title: 'last_LOGIN',
+							}
+							, {
+								field: 'user_ID',
+								title: 'user_ID',
+							}
+							, {
+								field: 'username',
+								title: 'username',
+							}
 						],
 						showToggle:true,
 						showRefresh: true,
@@ -98,21 +131,10 @@
 						pagination: true,  //开启分页
 						sidePagination: 'server',
 						pageNumber: 1,//默认加载页
-						pageSize: 10,//每页数据
-						pageList: [5,10,15,20],//可选的每页数据
-						queryParamsType:'',//queryParamsType的默认值为 'limit' ,在默认情况下 传给服务端的参数为：offset,limit,sort
-						//设置为 ''  在这种情况下传给服务器的参数为：pageSize,pageNumber */
-						queryParams: function (params) {
-							var param = {
-								limit : this.limit, // 页面大小
-								offset : this.offset, // 页码
-								pageNumber : this.pageNumber,
-								pageSize : this.pageSize,
-								sortName : this.sortName,
-								sortOrder : this.sortOrder
-							};
-							return param;
-						},//请求服务器数据时的参数
+						pageSize: 2,//每页数据
+						pageList: [2,10,15,20],//可选的每页数据
+
+
 						url: 'report/listtest1', //服务器数据的加载地址
 						responseHandler:function(res){
 							console.log(JSON.stringify(res.rows));

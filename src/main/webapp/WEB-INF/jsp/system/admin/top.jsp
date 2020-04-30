@@ -21,18 +21,30 @@
 	<script type="text/javascript" src="plugins/attention/zDialog/zDialog.js"></script>
 	<!--引入弹窗组件end-->
 	<script type="text/javascript" src="static/js/jquery.tips.js"></script>
-    <!--
-    <link href="static/bootstrap-table/bootstrap-table.css" rel="stylesheet" />
-    <script type="text/javascript" src="static/js/bootstrap-table/bootstrap-table.js"></script>
-   -->
+
+
+
+
+	<script type="text/javascript" src="static/bootstrap-table/bootstrap-table.js"></script>
 	<script type="text/javascript" src="static/bootstrap-table/bootstrap-table.min.js"></script>
+
 	<script type="text/javascript" src="static/bootstrap-table/locale/bootstrap-table-zh-CN.min.js"></script>
+
 	<link rel="stylesheet" href="static/bootstrap-table/bootstrap-table.min.css">
+	<link rel="stylesheet" href="static/bootstrap-table/bootstrap-table.css">
 
 
-<!--
-	<script type="text/javascript" src="static/bootstrap-table/jquery.treegrid.extension.js"></script>
-	-->
+
+
+
+
+
+
+
+
+
+
+
 
 
 

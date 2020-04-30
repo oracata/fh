@@ -31,6 +31,7 @@ public class ReportActiveController  extends BaseController {
 
     @RequestMapping("/test1")
     public ModelAndView getKhjTask(){
+        //这个地方设置权限
 
         ModelAndView mav = new ModelAndView("report/test1");
 
