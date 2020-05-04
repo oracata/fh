@@ -23,7 +23,6 @@
 
 
 
-
 </head>
 
 
@@ -41,7 +40,19 @@
 
 
 			<div class="row-fluid">
+				<!-- 检索  -->
+				<form action="user/listUsers.do" method="post" name="userForm" id="userForm">
+					<table>
+						<tr>
 
+							<td><input    class="span10 date-picker" name="lastLoginStart" id="lastLoginStart"  value="${pd.lastLoginStart}" type="text" data-date-format="yyyy-mm-dd" readonly="readonly" style="width:88px;" placeholder="开始日期" title="最近登录开始"/></td>
+							<td><input    class="span10 date-picker" name="lastLoginEnd" name="lastLoginEnd"  value="${pd.lastLoginEnd}" type="text" data-date-format="yyyy-mm-dd" readonly="readonly" style="width:88px;" placeholder="结束日期" title="最近登录结束"/></td>
+
+
+						</tr>
+					</table>
+					</form>
+					<!-- 检索  -->
 				<div class="row-fluid">
 
 
@@ -104,7 +115,14 @@
 
 				$(function () {
 					$('#dataGrid').bootstrapTable({
-						columns: [  {
+						columns: [ {
+							checkbox:"true",
+							field : "box"
+						},  {
+							title : "id",
+							field : "USER_ID",
+							visible: false
+						},  {
 							field: 'name',
 							title: '姓名',
 						}, {
@@ -124,18 +142,20 @@
 								title: 'username',
 							}
 						],
-						showToggle:true,
-						showRefresh: true,
+						//search : true,//搜索
+						//showToggle:true,
+						//showRefresh: true,
 						locale:'zh-CN',//中文支持
 						//页面需要展示的列，后端交互对象的属性
 						pagination: true,  //开启分页
 						sidePagination: 'server',
-						pageNumber: 1,//默认加载页
-						pageSize: 2,//每页数据
-						pageList: [2,10,15,20],//可选的每页数据
+				    	pageNumber: 1,//默认加载页
+					 	pageSize: 5,//每页数据
+					   // pageList: [5,10,15,20],//可选的每页数据
 
 
 						url: 'report/listtest1', //服务器数据的加载地址
+						queryParams:queryParam,
 						responseHandler:function(res){
 							console.log(JSON.stringify(res.rows));
 							return{                            //return bootstrap-table能处理的数据格式
@@ -147,10 +167,40 @@
 						}
 					});
 
+					function queryParam(params){
+					debugger;
+						var param = {
+							limit : this.limit, // 页面大小
+							offset : this.offset, // 页码
+							pageNumber : this.pageNumber,
+							pageSize : this.pageSize,
+							sortName : this.sortName,
+							sortOrder : this.sortOrder
+						};
+						return param;
+					}
+
 				});
 
 
 
+			</script>
+
+			<script>
+			//检索
+			function search(){
+			top.jzts();
+			$("#userForm").submit();
+			}
+
+
+			</script>
+
+			<script type="text/javascript">
+					$(function() {
+						//日期框
+						$('.date-picker').datepicker();
+					});
 			</script>
 
 

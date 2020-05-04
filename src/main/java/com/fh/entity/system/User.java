@@ -1,6 +1,7 @@
 package com.fh.entity.system;
 
 import com.fh.entity.Page;
+import com.fh.entity.PageModel;
 
 /**
  * 
@@ -12,7 +13,7 @@ import com.fh.entity.Page;
 * 创建时间：2014年6月28日
 * @version 1.0
  */
-public class User {
+public class User extends PageModel {
 	private String USER_ID;		//用户id
 	private String USERNAME;	//用户名
 	private String PASSWORD; 	//密码
@@ -126,23 +127,5 @@ public class User {
 
 
 
-
-	private Integer page=1;
-
-	public Integer getPage() {
-		return page;
-	}
-
-	public void setPage(Integer page) {
-		this.page = page;
-	}
-
-	private Integer limit=10;
-	public Integer getLimit() {
-		return limit;
-	}
-	public void setLimit(Integer limit) {
-		this.limit = limit;
-	}
 
 }

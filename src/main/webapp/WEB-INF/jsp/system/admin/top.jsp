@@ -25,13 +25,21 @@
 
 
 
-	<script type="text/javascript" src="static/bootstrap-table/bootstrap-table.js"></script>
-	<script type="text/javascript" src="static/bootstrap-table/bootstrap-table.min.js"></script>
 
-	<script type="text/javascript" src="static/bootstrap-table/locale/bootstrap-table-zh-CN.min.js"></script>
+	<!--引入bootstrap-table组件end-->
+	<script type="text/javascript" src="//cdn.bootcss.com/bootstrap-table/1.11.1/bootstrap-table.min.js"></script>
+	<script type="text/javascript" src="//cdn.bootcss.com/bootstrap-table/1.2.0/locale/bootstrap-table-zh-CN.min.js"></script>
 
-	<link rel="stylesheet" href="static/bootstrap-table/bootstrap-table.min.css">
-	<link rel="stylesheet" href="static/bootstrap-table/bootstrap-table.css">
+
+	<link rel="stylesheet" href="//cdn.bootcss.com/bootstrap-table/1.11.0/bootstrap-table.min.css" />
+
+
+	<script type="text/javascript" src="static/js/bootstrap-datepicker.min.js"></script><!-- 日期框 -->
+
+
+
+
+
 
 
 

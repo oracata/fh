@@ -132,7 +132,7 @@ public class UserService {
 
 	public DataGridView listUser(User user) throws Exception {
 
-		com.github.pagehelper.Page<Object> page= PageHelper.startPage(user.getPage(),user.getLimit());
+		com.github.pagehelper.Page<Object> page= PageHelper.startPage(user.getPageNumber(),user.getPageSize());
 		List<User> data= (List<User>) dao.findForList("UserXMapper.listAllUser",user);
 		return new DataGridView(page.getTotal(),data);
 
