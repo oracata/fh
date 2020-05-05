@@ -21,8 +21,6 @@
 
 
 
-
-
 </head>
 
 
@@ -39,21 +37,7 @@
 		<div id="page-content" class="clearfix">
 
 
-			<div class="row-fluid">
-				<!-- 检索  -->
-				<form action="user/listUsers.do" method="post" name="userForm" id="userForm">
-					<table>
-						<tr>
 
-							<td><input    class="span10 date-picker" name="lastLoginStart" id="lastLoginStart"  value="${pd.lastLoginStart}" type="text" data-date-format="yyyy-mm-dd" readonly="readonly" style="width:88px;" placeholder="开始日期" title="最近登录开始"/></td>
-							<td><input    class="span10 date-picker" name="lastLoginEnd" name="lastLoginEnd"  value="${pd.lastLoginEnd}" type="text" data-date-format="yyyy-mm-dd" readonly="readonly" style="width:88px;" placeholder="结束日期" title="最近登录结束"/></td>
-
-
-						</tr>
-					</table>
-					</form>
-					<!-- 检索  -->
-				<div class="row-fluid">
 
 
 
@@ -61,7 +45,7 @@
 						<div class="tabbable" id="userTab">
 							<ul class="nav nav-tabs">
 								<li class="active">
-									<a data-toggle="tab" href="#userchartTab">
+									<a data-toggle="tab"  href="#userchartTab">
 										用户分布
 									</a>
 								</li>
@@ -77,12 +61,30 @@
 								</li>
 							</ul>
 							<div class="tab-content">
-								<div id="userchartTab" class="tab-pane fade in active">
 
-							         <div id="table-responsive-width"  >
+
+							     	<div id="userchartTab" class="tab-pane fade in active">
+
+										<!-- 检索  -->
+										<form action="user/listUsers.do" method="post" name="userForm" id="userForm">
+											<table>
+												<tr>
+
+													<td><input    class="span10 date-picker" name="lastLoginStart" id="lastLoginStart"  value="${lastLoginStart}" type="text" data-date-format="yyyy-mm-dd" readonly="readonly" style="width:88px;" placeholder="开始日期" title="最近登录开始"/></td>
+													<td><input    class="span10 date-picker" name="lastLoginEnd" name="lastLoginEnd"  value="${lastLoginEnd}" type="text" data-date-format="yyyy-mm-dd" readonly="readonly" style="width:88px;" placeholder="结束日期" title="最近登录结束"/></td>
+
+
+												</tr>
+											</table>
+										</form>
+
+
+
+
+							           <div id="table-responsive-width"  >
 									     <table   id="dataGrid">
 									     </table>
-								     </div>
+								       </div>
 
 								</div>
 
@@ -97,6 +99,9 @@
 
 
 							</div>
+
+
+
 						</div>
 
 
@@ -112,6 +117,9 @@
 			<script type="text/javascript">
 				//加载提示隐藏
 				$(top.hangge());
+
+
+
 
 				$(function () {
 					$('#dataGrid').bootstrapTable({
@@ -168,7 +176,7 @@
 					});
 
 					function queryParam(params){
-					debugger;
+
 						var param = {
 							limit : this.limit, // 页面大小
 							offset : this.offset, // 页码

@@ -23,6 +23,7 @@
   	<mvc:interceptors>
 		<mvc:interceptor>
 			<mvc:mapping path="/**/**"/>
+
 			<bean class="com.fh.interceptor.LoginHandlerInterceptor"/>
 		</mvc:interceptor>
 	</mvc:interceptors>

@@ -5,7 +5,7 @@ and (device-width : 375px)
 and (device-height : 667px)
 and (-webkit-device-pixel-ratio : 2) and (orientation:portrait )  {
 
-
+    #date-picker1{z-index:9999999}
     #table-responsive-width{width: calc(375px - (375px * 0.12))  ;}
 }
 
