@@ -154,7 +154,14 @@ public class DateUtil {
         
         return dateStr;
     }
-    
+
+	public static String getTimeDay( int index){
+		Calendar cal=Calendar.getInstance();
+		cal.add(Calendar.DATE,  index);
+		SimpleDateFormat fmt = new SimpleDateFormat("yyyy-MM-dd");
+		String date = fmt.format(cal.getTime());
+		return date;
+	}
     /**
      * 得到n天之后是周几
      * @param days

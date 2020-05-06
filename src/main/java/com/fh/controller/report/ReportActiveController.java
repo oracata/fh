@@ -1,17 +1,18 @@
 package com.fh.controller.report;
 
 import com.fh.controller.base.BaseController;
+import com.fh.entity.report.ReportDay;
 import com.fh.entity.system.User;
+import com.fh.service.report.ReportService;
 import com.fh.service.system.user.UserService;
-import com.fh.util.Const;
-import com.fh.util.DataGridView;
-import com.fh.util.Jurisdiction;
-import com.fh.util.PageData;
+import com.fh.util.*;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.crypto.hash.SimpleHash;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.Subject;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
@@ -24,26 +25,39 @@ import java.util.Map;
 @Controller
 @RequestMapping(value="/report")
 public class ReportActiveController  extends BaseController {
-    @Resource(name="userService")
-    private UserService userService;
+    @Resource(name="reportService")
+    private ReportService reportService;
 
 
 
     @RequestMapping("/test1")
-    public ModelAndView getKhjTask(){
+    public ModelAndView getTest1(Model model, @ModelAttribute ReportDay v_reportday){
         //这个地方设置权限
 
+        //初始化查询条件
+        if(v_reportday.getBegin_date()==null && v_reportday.getEnd_date()==null&&v_reportday.getShengfen()==null&&v_reportday.getChengshi()==null&&v_reportday.getQuyufl()==null) {
+            v_reportday.setBegin_date(DateUtil.getTimeDay(0));
+            v_reportday.setEnd_date(DateUtil.getTimeDay(0));
+            v_reportday.setShengfen("云南省");
+            v_reportday.setChengshi("");
+            v_reportday.setQuyufl(" 合计");
+        }
         ModelAndView mav = new ModelAndView("report/test1");
+        mav.addObject("reportday_con", v_reportday);
 
         return mav;
     }
 
     @ResponseBody
     @RequestMapping(value="/listtest1")
-    public DataGridView selectTest1(User user) throws Exception{
+    public DataGridView selectTest1(ReportDay reportday) throws Exception{
 
+        System.out.print("shengfen:"+reportday.getShengfen());
+        System.out.print("chengshi:"+reportday.getChengshi());
+        System.out.print("quyufl:"+reportday.getQuyufl());
    //     mv.addObject(Const.SESSION_QX,this.getHC());	//按钮权限
-        return      userService.listUser(user);
+
+        return      reportService.listArea(reportday);
 
     }
 
