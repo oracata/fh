@@ -87,6 +87,7 @@
 										<input type="hidden" name="shengfen" id="shengfen" value="${reportday_con.shengfen }"/>
 										<input type="hidden" name="chengshi" id="chengshi" value="${reportday_con.chengshi }"/>
 										<input type="hidden" name="quyufl" id="quyufl" value="${reportday_con.quyufl }"/>
+                                        <input type="hidden" name="whoactive" id="whoactive" />
 
                                     </form>
 
@@ -123,12 +124,11 @@
 			<script type="text/javascript">
 				//加载提示隐藏
 				$(top.hangge());
+                //提交后停留在当前页
 
 
 
-
-				$(function () {
-
+                $(function () {
 
 
 
@@ -201,7 +201,39 @@
 						return param;
 					}
 
-				});
+
+
+
+                //让当前tab页保留当前位置
+
+                    $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+                        // 获取已激活的标签页的名称
+                        var activeTab = $(e.target).text();
+                        // 获取前一个激活的标签页的名称
+                        var previousTab = $(e.relatedTarget).text();
+                        $(".active-tab span").html(activeTab);
+                        $(".previous-tab span").html(previousTab);
+                    });
+                });
+
+                /*Bootstrap 3：在页面刷新时保持选中的选项卡*/
+                $(document).ready(function () {
+                    if (location.hash) {
+                        $("a[href='" + location.hash + "']").tab("show");
+                    }
+                    $(document.body).on("click", "a[data-toggle='tab']", function (event) {
+                        location.hash = this.getAttribute("href");
+                    });
+                });
+                $(window).on("popstate", function () {
+                    var anchor = location.hash || $("a[data-toggle='tab']").first().attr("href");
+                    $("a[href='" + anchor + "']").tab("show");
+                     //让当前tab页保留当前位置
+
+
+
+
+                });
 
 
 
