@@ -12,6 +12,15 @@ public class DataGridView {
     //private Integer code=0;
    // private String msg="";
     private Long total;
+
+    public Object getRows() {
+        return rows;
+    }
+
+    public void setRows(Object rows) {
+        this.rows = rows;
+    }
+
     private Object rows;
 
 

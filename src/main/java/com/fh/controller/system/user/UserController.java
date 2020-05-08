@@ -346,6 +346,7 @@ public class UserController extends BaseController {
 				if(null != USERNAME && !"".equals(USERNAME)){
 					USERNAME = USERNAME.trim();
 					pd.put("USERNAME", USERNAME);
+
 				}
 				String lastLoginStart = pd.getString("lastLoginStart");
 				String lastLoginEnd = pd.getString("lastLoginEnd");

@@ -10,6 +10,7 @@
     </settings>
 	<!-- 别名 简化在mapper代码 就不用写一长串了 -->
 	<typeAliases>
+		<typeAlias type="com.fh.entity.report.Search" alias="Search"/>
 		<typeAlias type="com.fh.entity.report.ReportDay" alias="ReportDay"/>
 		<typeAlias type="com.fh.entity.system.User" alias="User"/>
 		<typeAlias type="com.fh.entity.system.Role" alias="Role"/>

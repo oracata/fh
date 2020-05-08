@@ -5,7 +5,9 @@ import java.util.List;
 import javax.annotation.Resource;
 
 import com.fh.entity.report.ReportDay;
+import com.fh.entity.report.Search;
 import com.fh.util.DataGridView;
+import com.fh.util.PageData;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.Page;
 import org.springframework.stereotype.Service;
@@ -32,6 +34,17 @@ public class ReportService {
         return new DataGridView(page.getTotal(),data);
 
     }
+
+
+    public DataGridView listSearchno(Search search) throws Exception {
+
+        Page<Object> page= PageHelper.startPage(search.getPageNumber(),search.getPageSize());
+        List<Search> data= (List<Search>) dao.findForList("ReportSearchMapper.listSearchno",search);
+        return new DataGridView(page.getTotal(),data);
+
+    }
+
+
 
 
 }
