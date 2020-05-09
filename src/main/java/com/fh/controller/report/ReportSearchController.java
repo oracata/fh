@@ -7,6 +7,8 @@ import com.fh.entity.system.User;
 import com.fh.service.report.ReportService;
 import com.fh.service.system.user.UserService;
 import com.fh.util.*;
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.crypto.hash.SimpleHash;
 import org.apache.shiro.session.Session;
@@ -56,8 +58,10 @@ public class ReportSearchController  extends BaseController {
 
 
         //     mv.addObject(Const.SESSION_QX,this.getHC());	//°´Å¥È¨ÏÞ
+         Page<Object> page= PageHelper.startPage(search.getPageNumber(),search.getPageSize());
+        List<Search> data= reportService.listSearchno(search);
+        return new DataGridView(page.getTotal(),data);
 
-        return      reportService.listSearchno(search);
 
     }
 
@@ -103,8 +107,9 @@ public class ReportSearchController  extends BaseController {
 
                 dataMap.put("titles", titles);
 
-                DataGridView listsearchno_grid=  reportService.listSearchno(search);
-                List<Search> listsearchno=( List<Search>)listsearchno_grid.getRows();
+                List<Search> listsearchno=  reportService.listSearchno(search);
+
+                System.out.println("*************:"+listsearchno.size());
                 List<PageData> varList = new ArrayList<PageData>();
                 for(int i=0;i<listsearchno.size();i++){
                     PageData vpd = new PageData();

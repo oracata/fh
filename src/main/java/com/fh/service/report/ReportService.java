@@ -36,11 +36,10 @@ public class ReportService {
     }
 
 
-    public DataGridView listSearchno(Search search) throws Exception {
+    public List<Search> listSearchno(Search search) throws Exception {
 
-        Page<Object> page= PageHelper.startPage(search.getPageNumber(),search.getPageSize());
-        List<Search> data= (List<Search>) dao.findForList("ReportSearchMapper.listSearchno",search);
-        return new DataGridView(page.getTotal(),data);
+
+        return (List<Search>) dao.findForList("ReportSearchMapper.listSearchno",search);
 
     }
 
