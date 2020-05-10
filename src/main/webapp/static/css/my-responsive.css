@@ -5,7 +5,7 @@ and (device-width : 375px)
 and (device-height : 667px)
 and (-webkit-device-pixel-ratio : 2) and (orientation:portrait )  {
 
-    #date-picker1{z-index:9999999}
+    #main_map{height:100%}
     #table-responsive-width{width: calc(375px - (375px * 0.12))  ;}
 }
 
@@ -14,7 +14,7 @@ and (-webkit-device-pixel-ratio : 2) and (orientation:portrait )  {
 and (device-width : 375px)
 and (device-height : 667px)
 and (-webkit-device-pixel-ratio : 2)  and (orientation:landscape) {
-
+    #main_map{ width:375px;height:375px}
     #table-responsive-width{width: calc(667px - (667px * 0.1))  ;}
 }
 
