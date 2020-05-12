@@ -223,6 +223,10 @@
 					}
 				}
 
+
+
+
+
 				//导出excel
 				function toExcel(){
 					window.location.href='<%=basePath%>pictures/excel.do';
