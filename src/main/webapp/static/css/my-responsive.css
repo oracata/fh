@@ -5,7 +5,7 @@ and (device-width : 375px)
 and (device-height : 667px)
 and (-webkit-device-pixel-ratio : 2) and (orientation:portrait )  {
 
-    #main_map{height:100%}
+    #main_map{height:420px!important;}
     #table-responsive-width{width: calc(375px - (375px * 0.12))  ;}
 }
 
@@ -14,7 +14,7 @@ and (-webkit-device-pixel-ratio : 2) and (orientation:portrait )  {
 and (device-width : 375px)
 and (device-height : 667px)
 and (-webkit-device-pixel-ratio : 2)  and (orientation:landscape) {
-    #main_map{ width:375px;height:375px}
+
     #table-responsive-width{width: calc(667px - (667px * 0.1))  ;}
 }
 
@@ -25,6 +25,8 @@ and (-webkit-device-pixel-ratio : 2)  and (orientation:landscape) {
 and (device-width : 414px)
 and (device-height : 736px)
 and (-webkit-device-pixel-ratio : 3)  and (orientation:portrait ) {
+
+    #main_map{height:520px!important;}
     #table-responsive-width{width: calc(414px - (414px * 0.12))  ;}
 }
 
@@ -44,6 +46,8 @@ and (-webkit-device-pixel-ratio : 3)  and (orientation:landscape) {
 and (device-width : 375px)
 and (device-height : 812px)
 and (-webkit-device-pixel-ratio : 3) and (orientation:portrait ) {
+
+    #main_map{height:620px!important;}
     #table-responsive-width{width: calc(375px - (375px * 0.12))  ;}
 }
 

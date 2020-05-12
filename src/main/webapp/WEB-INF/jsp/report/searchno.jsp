@@ -136,7 +136,7 @@
             contentType : "application/x-www-form-urlencoded",
             dataType:"json",
             columns: [   {
-                field: 'search_key',
+                field: 'wldwname',
                 title: '客户',
             }, {
                 field: 'search_key',
