@@ -8,6 +8,7 @@ import java.util.Map;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
+import com.fh.entity.report.ReportDay;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.UsernamePasswordToken;
@@ -15,6 +16,8 @@ import org.apache.shiro.crypto.hash.SimpleHash;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.Subject;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -288,8 +291,22 @@ public class LoginController extends BaseController {
 	 * @return
 	 */
 	@RequestMapping(value="/login_default")
-	public String defaultPage(){
-		return "system/admin/default";
+	public ModelAndView defaultPage(Model model, @ModelAttribute ReportDay v_reportday){
+
+		//初始化查询条件
+		if(v_reportday.getBegin_date()==null && v_reportday.getEnd_date()==null&&v_reportday.getShengfen()==null&&v_reportday.getChengshi()==null&&v_reportday.getQuyufl()==null) {
+			v_reportday.setBegin_date(DateUtil.getTimeDay(0));
+			v_reportday.setEnd_date(DateUtil.getTimeDay(0));
+			v_reportday.setShengfen("云南省");
+			v_reportday.setChengshi("");
+			v_reportday.setQuyufl(" 合计");
+		}
+		ModelAndView mav = new ModelAndView("system/admin/default");
+		mav.addObject("reportday_con", v_reportday);
+
+		return mav;
+
+
 	}
 	
 	/**
