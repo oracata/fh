@@ -103,6 +103,7 @@ public class ReportSearchController  extends BaseController {
                 titles.add("客户"); 		//1
                 titles.add("搜索词");  		//2
                 titles.add("搜索次数");			//3
+                titles.add("日期"); 		//4
 
 
                 dataMap.put("titles", titles);
@@ -118,6 +119,7 @@ public class ReportSearchController  extends BaseController {
                     vpd.put("var1", listsearchno.get(i).getWldwname());		//1
                     vpd.put("var2", listsearchno.get(i).getSearch_key());		//2
                     vpd.put("var3", listsearchno.get(i).getSearch_num() );			//3
+                    vpd.put("var4", listsearchno.get(i).getRq());			//4
 
                     varList.add(vpd);
                 }

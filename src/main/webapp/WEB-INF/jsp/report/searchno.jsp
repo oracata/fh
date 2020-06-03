@@ -135,7 +135,12 @@
             //极为重要，缺失无法执行queryParams，传递page参数
             contentType : "application/x-www-form-urlencoded",
             dataType:"json",
-            columns: [   {
+            columns: [
+                {
+                    field: 'rq',
+                    title: '日期',
+                }
+                ,  {
                 field: 'wldwname',
                 title: '客户',
             }, {

@@ -28,7 +28,7 @@
     <!-- 引入 -->
 
 
-	<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+
 	<script src="https://cdn.bootcss.com/echarts/4.1.0-release/echarts.min.js"></script>
 </head>
 

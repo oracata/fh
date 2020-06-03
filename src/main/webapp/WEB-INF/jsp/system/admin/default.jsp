@@ -22,14 +22,16 @@
 	<link rel="stylesheet" href="static/css/my.css" />
 
 	<!-- 引入 -->
+
 	<script type="text/javascript">window.jQuery || document.write("<script src='static/js/jquery-1.9.1.min.js'>\x3C/script>");</script>
+
 	<script src="static/js/bootstrap.min.js"></script>
 	<script src="static/js/ace-elements.min.js"></script>
 	<script src="static/js/ace.min.js"></script>
 	<!-- 引入 -->
 
 	<!-- 使用官网的文件会变形，所示使用示例的文件 -->
-	<script src="static/echarts/map/jquery.min.js"></script>
+
 	<script src="static/echarts/map/echarts.min.js"></script>
 	<!-- 使用官网的文件会变形，所示使用示例的文件 -->
 </head>

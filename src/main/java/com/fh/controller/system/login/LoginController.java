@@ -37,7 +37,7 @@ import com.fh.util.PageData;
 import com.fh.util.RightsHelper;
 import com.fh.util.Tools;
 /*
- * æ€»å…¥å£
+ * ×ÜÈë¿Ú
  */
 @Controller
 public class LoginController extends BaseController {
@@ -50,7 +50,7 @@ public class LoginController extends BaseController {
 	private RoleService roleService;
 	
 	/**
-	 * è·å–ç™»å½•ç”¨æˆ·çš„IP
+	 * »ñÈ¡µÇÂ¼ÓÃ»§µÄIP
 	 * @throws Exception 
 	 */
 	public void getRemortIP(String USERNAME) throws Exception {  
@@ -69,7 +69,7 @@ public class LoginController extends BaseController {
 	
 	
 	/**
-	 * è®¿é—®ç™»å½•é¡µ
+	 * ·ÃÎÊµÇÂ¼Ò³
 	 * @return
 	 */
 	@RequestMapping(value="/login_toLogin")
@@ -77,14 +77,14 @@ public class LoginController extends BaseController {
 		ModelAndView mv = this.getModelAndView();
 		PageData pd = new PageData();
 		pd = this.getPageData();
-		pd.put("SYSNAME", Tools.readTxtFile(Const.SYSNAME)); //è¯»å–ç³»ç»Ÿåç§°
+		pd.put("SYSNAME", Tools.readTxtFile(Const.SYSNAME)); //¶ÁÈ¡ÏµÍ³Ãû³Æ
 		mv.setViewName("system/admin/login");
 		mv.addObject("pd",pd);
 		return mv;
 	}
 	
 	/**
-	 * è¯·æ±‚ç™»å½•ï¼ŒéªŒè¯ç”¨æˆ·
+	 * ÇëÇóµÇÂ¼£¬ÑéÖ¤ÓÃ»§
 	 */
 	@RequestMapping(value="/login_login" ,produces="application/json;charset=UTF-8")
 	@ResponseBody
@@ -96,20 +96,20 @@ public class LoginController extends BaseController {
 		String KEYDATA[] = pd.getString("KEYDATA").replaceAll("qq313596790fh", "").replaceAll("QQ978336446fh", "").split(",fh,");
 		
 		if(null != KEYDATA && KEYDATA.length == 3){
-			//shiroç®¡ç†çš„session
+			//shiro¹ÜÀíµÄsession
 			Subject currentUser = SecurityUtils.getSubject();  
 			Session session = currentUser.getSession();
-			String sessionCode = (String)session.getAttribute(Const.SESSION_SECURITY_CODE);		//è·å–sessionä¸­çš„éªŒè¯ç 
+			String sessionCode = (String)session.getAttribute(Const.SESSION_SECURITY_CODE);		//»ñÈ¡sessionÖĞµÄÑéÖ¤Âë
 			
 			String code = KEYDATA[2];
 			if(null == code || "".equals(code)){
-				errInfo = "nullcode"; //éªŒè¯ç ä¸ºç©º
+				errInfo = "nullcode"; //ÑéÖ¤ÂëÎª¿Õ
 			}else{
 				String USERNAME = KEYDATA[0];
 				String PASSWORD  = KEYDATA[1];
 				pd.put("USERNAME", USERNAME);
 				if(Tools.notEmpty(sessionCode) && sessionCode.equalsIgnoreCase(code)){
-					String passwd = new SimpleHash("SHA-1", USERNAME, PASSWORD).toString();	//å¯†ç åŠ å¯†
+					String passwd = new SimpleHash("SHA-1", USERNAME, PASSWORD).toString();	//ÃÜÂë¼ÓÃÜ
 					pd.put("PASSWORD", passwd);
 					pd = userService.getUserByNameAndPwd(pd);
 					if(pd != null){
@@ -128,34 +128,34 @@ public class LoginController extends BaseController {
 						session.setAttribute(Const.SESSION_USER, user);
 						session.removeAttribute(Const.SESSION_SECURITY_CODE);
 						
-						//shiroåŠ å…¥èº«ä»½éªŒè¯
+						//shiro¼ÓÈëÉí·İÑéÖ¤
 						Subject subject = SecurityUtils.getSubject(); 
 					    UsernamePasswordToken token = new UsernamePasswordToken(USERNAME, PASSWORD); 
 					    try { 
 					        subject.login(token); 
 					    } catch (AuthenticationException e) { 
-					    	errInfo = "èº«ä»½éªŒè¯å¤±è´¥ï¼";
+					    	errInfo = "Éí·İÑéÖ¤Ê§°Ü£¡";
 					    }
 					    
 					}else{
-						errInfo = "usererror"; 				//ç”¨æˆ·åæˆ–å¯†ç æœ‰è¯¯
+						errInfo = "usererror"; 				//ÓÃ»§Ãû»òÃÜÂëÓĞÎó
 					}
 				}else{
-					errInfo = "codeerror";				 	//éªŒè¯ç è¾“å…¥æœ‰è¯¯
+					errInfo = "codeerror";				 	//ÑéÖ¤ÂëÊäÈëÓĞÎó
 				}
 				if(Tools.isEmpty(errInfo)){
-					errInfo = "success";					//éªŒè¯æˆåŠŸ
+					errInfo = "success";					//ÑéÖ¤³É¹¦
 				}
 			}
 		}else{
-			errInfo = "error";	//ç¼ºå°‘å‚æ•°
+			errInfo = "error";	//È±ÉÙ²ÎÊı
 		}
 		map.put("result", errInfo);
 		return AppUtil.returnObject(new PageData(), map);
 	}
 	
 	/**
-	 * è®¿é—®ç³»ç»Ÿé¦–é¡µ
+	 * ·ÃÎÊÏµÍ³Ê×Ò³
 	 */
 	@RequestMapping(value="/main/{changeMenu}")
 	public ModelAndView login_index(@PathVariable("changeMenu") String changeMenu){
@@ -164,7 +164,7 @@ public class LoginController extends BaseController {
 		pd = this.getPageData();
 		try{
 			
-			//shiroç®¡ç†çš„session
+			//shiro¹ÜÀíµÄsession
 			Subject currentUser = SecurityUtils.getSubject();  
 			Session session = currentUser.getSession();
 			
@@ -180,9 +180,9 @@ public class LoginController extends BaseController {
 				}
 				Role role = user.getRole();
 				String roleRights = role!=null ? role.getRIGHTS() : "";
-				//é¿å…æ¯æ¬¡æ‹¦æˆªç”¨æˆ·æ“ä½œæ—¶æŸ¥è¯¢æ•°æ®åº“ï¼Œä»¥ä¸‹å°†ç”¨æˆ·æ‰€å±è§’è‰²æƒé™ã€ç”¨æˆ·æƒé™é™éƒ½å­˜å…¥session
-				session.setAttribute(Const.SESSION_ROLE_RIGHTS, roleRights); 		//å°†è§’è‰²æƒé™å­˜å…¥session
-				session.setAttribute(Const.SESSION_USERNAME, user.getUSERNAME());	//æ”¾å…¥ç”¨æˆ·å
+				//±ÜÃâÃ¿´ÎÀ¹½ØÓÃ»§²Ù×÷Ê±²éÑ¯Êı¾İ¿â£¬ÒÔÏÂ½«ÓÃ»§ËùÊô½ÇÉ«È¨ÏŞ¡¢ÓÃ»§È¨ÏŞÏŞ¶¼´æÈësession
+				session.setAttribute(Const.SESSION_ROLE_RIGHTS, roleRights); 		//½«½ÇÉ«È¨ÏŞ´æÈësession
+				session.setAttribute(Const.SESSION_USERNAME, user.getUSERNAME());	//·ÅÈëÓÃ»§Ãû
 				
 				List<Menu> allmenuList = new ArrayList<Menu>();
 				
@@ -199,19 +199,19 @@ public class LoginController extends BaseController {
 							}
 						}
 					}
-					session.setAttribute(Const.SESSION_allmenuList, allmenuList);			//èœå•æƒé™æ”¾å…¥sessionä¸­
+					session.setAttribute(Const.SESSION_allmenuList, allmenuList);			//²Ëµ¥È¨ÏŞ·ÅÈësessionÖĞ
 				}else{
 					allmenuList = (List<Menu>)session.getAttribute(Const.SESSION_allmenuList);
 				}
 				
-				//åˆ‡æ¢èœå•=====
+				//ÇĞ»»²Ëµ¥=====
 				List<Menu> menuList = new ArrayList<Menu>();
 				//if(null == session.getAttribute(Const.SESSION_menuList) || ("yes".equals(pd.getString("changeMenu")))){
 				if(null == session.getAttribute(Const.SESSION_menuList) || ("yes".equals(changeMenu))){
 					List<Menu> menuList1 = new ArrayList<Menu>();
 					List<Menu> menuList2 = new ArrayList<Menu>();
 					
-					//æ‹†åˆ†èœå•
+					//²ğ·Ö²Ëµ¥
 					for(int i=0;i<allmenuList.size();i++){
 						Menu menu = allmenuList.get(i);
 						if("1".equals(menu.getMENU_TYPE())){
@@ -236,19 +236,19 @@ public class LoginController extends BaseController {
 				}else{
 					menuList = (List<Menu>)session.getAttribute(Const.SESSION_menuList);
 				}
-				//åˆ‡æ¢èœå•=====
+				//ÇĞ»»²Ëµ¥=====
 				
 				if(null == session.getAttribute(Const.SESSION_QX)){
-					session.setAttribute(Const.SESSION_QX, this.getUQX(session));	//æŒ‰é’®æƒé™æ”¾åˆ°sessionä¸­
+					session.setAttribute(Const.SESSION_QX, this.getUQX(session));	//°´Å¥È¨ÏŞ·Åµ½sessionÖĞ
 				}
 				
-				//FusionCharts æŠ¥è¡¨
-			 	String strXML = "<graph caption='å‰12ä¸ªæœˆè®¢å•é”€é‡æŸ±çŠ¶å›¾' xAxisName='æœˆä»½' yAxisName='å€¼' decimalPrecision='0' formatNumberScale='0'><set name='2013-05' value='4' color='AFD8F8'/><set name='2013-04' value='0' color='AFD8F8'/><set name='2013-03' value='0' color='AFD8F8'/><set name='2013-02' value='0' color='AFD8F8'/><set name='2013-01' value='0' color='AFD8F8'/><set name='2012-01' value='0' color='AFD8F8'/><set name='2012-11' value='0' color='AFD8F8'/><set name='2012-10' value='0' color='AFD8F8'/><set name='2012-09' value='0' color='AFD8F8'/><set name='2012-08' value='0' color='AFD8F8'/><set name='2012-07' value='0' color='AFD8F8'/><set name='2012-06' value='0' color='AFD8F8'/></graph>" ;
+				//FusionCharts ±¨±í
+			 	String strXML = "<graph caption='Ç°12¸öÔÂ¶©µ¥ÏúÁ¿Öù×´Í¼' xAxisName='ÔÂ·İ' yAxisName='Öµ' decimalPrecision='0' formatNumberScale='0'><set name='2013-05' value='4' color='AFD8F8'/><set name='2013-04' value='0' color='AFD8F8'/><set name='2013-03' value='0' color='AFD8F8'/><set name='2013-02' value='0' color='AFD8F8'/><set name='2013-01' value='0' color='AFD8F8'/><set name='2012-01' value='0' color='AFD8F8'/><set name='2012-11' value='0' color='AFD8F8'/><set name='2012-10' value='0' color='AFD8F8'/><set name='2012-09' value='0' color='AFD8F8'/><set name='2012-08' value='0' color='AFD8F8'/><set name='2012-07' value='0' color='AFD8F8'/><set name='2012-06' value='0' color='AFD8F8'/></graph>" ;
 			 	mv.addObject("strXML", strXML);
-			 	//FusionCharts æŠ¥è¡¨
+			 	//FusionCharts ±¨±í
 			 	
-			 	//è¯»å–websocketé…ç½®
-			 	String strWEBSOCKET = Tools.readTxtFile(Const.WEBSOCKET);//è¯»å–WEBSOCKETé…ç½®
+			 	//¶ÁÈ¡websocketÅäÖÃ
+			 	String strWEBSOCKET = Tools.readTxtFile(Const.WEBSOCKET);//¶ÁÈ¡WEBSOCKETÅäÖÃ
 			 	if(null != strWEBSOCKET && !"".equals(strWEBSOCKET)){
 					String strIW[] = strWEBSOCKET.split(",fh,");
 					if(strIW.length == 4){
@@ -258,13 +258,13 @@ public class LoginController extends BaseController {
 						pd.put("OLPORT", strIW[3]);
 					}
 				}
-			 	//è¯»å–websocketé…ç½®
+			 	//¶ÁÈ¡websocketÅäÖÃ
 			 	
 				mv.setViewName("system/admin/index");
 				mv.addObject("user", user);
 				mv.addObject("menuList", menuList);
 			}else {
-				mv.setViewName("system/admin/login");//sessionå¤±æ•ˆåè·³è½¬ç™»å½•é¡µé¢
+				mv.setViewName("system/admin/login");//sessionÊ§Ğ§ºóÌø×ªµÇÂ¼Ò³Ãæ
 			}
 			
 			
@@ -272,13 +272,13 @@ public class LoginController extends BaseController {
 			mv.setViewName("system/admin/login");
 			logger.error(e.getMessage(), e);
 		}
-		pd.put("SYSNAME", Tools.readTxtFile(Const.SYSNAME)); //è¯»å–ç³»ç»Ÿåç§°
+		pd.put("SYSNAME", Tools.readTxtFile(Const.SYSNAME)); //¶ÁÈ¡ÏµÍ³Ãû³Æ
 		mv.addObject("pd",pd);
 		return mv;
 	}
 	
 	/**
-	 * è¿›å…¥tabæ ‡ç­¾
+	 * ½øÈëtab±êÇ©
 	 * @return
 	 */
 	@RequestMapping(value="/tab")
@@ -287,19 +287,19 @@ public class LoginController extends BaseController {
 	}
 	
 	/**
-	 * è¿›å…¥é¦–é¡µåçš„é»˜è®¤é¡µé¢
+	 * ½øÈëÊ×Ò³ºóµÄÄ¬ÈÏÒ³Ãæ
 	 * @return
 	 */
 	@RequestMapping(value="/login_default")
 	public ModelAndView defaultPage(Model model, @ModelAttribute ReportDay v_reportday){
 
-		//åˆå§‹åŒ–æŸ¥è¯¢æ¡ä»¶
+		//³õÊ¼»¯²éÑ¯Ìõ¼ş
 		if(v_reportday.getBegin_date()==null && v_reportday.getEnd_date()==null&&v_reportday.getShengfen()==null&&v_reportday.getChengshi()==null&&v_reportday.getQuyufl()==null) {
 			v_reportday.setBegin_date(DateUtil.getTimeDay(0));
 			v_reportday.setEnd_date(DateUtil.getTimeDay(0));
-			v_reportday.setShengfen("äº‘å—çœ");
+			v_reportday.setShengfen("ÔÆÄÏÊ¡");
 			v_reportday.setChengshi("");
-			v_reportday.setQuyufl(" åˆè®¡");
+			v_reportday.setQuyufl(" ºÏ¼Æ");
 		}
 		ModelAndView mav = new ModelAndView("system/admin/default");
 		mav.addObject("reportday_con", v_reportday);
@@ -310,7 +310,7 @@ public class LoginController extends BaseController {
 	}
 	
 	/**
-	 * ç”¨æˆ·æ³¨é”€
+	 * ÓÃ»§×¢Ïú
 	 * @param session
 	 * @return
 	 */
@@ -319,7 +319,7 @@ public class LoginController extends BaseController {
 		ModelAndView mv = this.getModelAndView();
 		PageData pd = new PageData();
 		
-		//shiroç®¡ç†çš„session
+		//shiro¹ÜÀíµÄsession
 		Subject currentUser = SecurityUtils.getSubject();  
 		Session session = currentUser.getSession();
 		
@@ -333,7 +333,7 @@ public class LoginController extends BaseController {
 		session.removeAttribute(Const.SESSION_USERROL);
 		session.removeAttribute("changeMenu");
 		
-		//shiroé”€æ¯ç™»å½•
+		//shiroÏú»ÙµÇÂ¼
 		Subject subject = SecurityUtils.getSubject(); 
 		subject.logout();
 		
@@ -341,14 +341,14 @@ public class LoginController extends BaseController {
 		String  msg = pd.getString("msg");
 		pd.put("msg", msg);
 		
-		pd.put("SYSNAME", Tools.readTxtFile(Const.SYSNAME)); //è¯»å–ç³»ç»Ÿåç§°
+		pd.put("SYSNAME", Tools.readTxtFile(Const.SYSNAME)); //¶ÁÈ¡ÏµÍ³Ãû³Æ
 		mv.setViewName("system/admin/login");
 		mv.addObject("pd",pd);
 		return mv;
 	}
 	
 	/**
-	 * è·å–ç”¨æˆ·æƒé™
+	 * »ñÈ¡ÓÃ»§È¨ÏŞ
 	 */
 	public Map<String, String> getUQX(Session session){
 		PageData pd = new PageData();
